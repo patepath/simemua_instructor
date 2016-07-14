@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <device id="D401">
+        <type>Meter</type>
+        <name>Speedo Meter</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon></cmdon>
+        <cmdoff></cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D402">
+        <type>Meter</type>
+        <name>Battery Voltmeter</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon></cmdon>
+        <cmdoff></cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D403">
+        <type>Meter</type>
+        <name>Duplex Air Gauge</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon></cmdon>
+        <cmdoff></cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D501">
+        <type>Monitor</type>
+        <name>ATC Display</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon></cmdon>
+        <cmdoff></cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D201">
+        <type>Switch PB Square Black</type>
+        <name>AUTOMATIC REVERSING</name>
+        <x>563</x>
+        <y>119</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D201 S1</cmdon>
+        <cmdoff>D201 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D202">
+        <type>Switch PB Square Green</type>
+        <name>ATC START</name>
+        <x>563</x>
+        <y>75</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D202 S1</cmdon>
+        <cmdoff>D202 S0</cmdoff>
+        <lampon>D209 S1</lampon>
+        <lampoff>D209 S0</lampoff>
+    </device>
+    
+    <device id="D203">
+        <type></type>
+        <name>RM1 PERMISSIVE</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon></cmdon>
+        <cmdoff></cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D204">
+        <type>Switch PB Permit</type>
+        <name>DOOR PERMISSIVE</name>
+        <x>562</x>
+        <y>243</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D204 S1</cmdon>
+        <cmdoff>D204 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D205">
+        <type>Switch PB Square Green</type>
+        <name>OPEN DOOR</name>
+        <x>13</x>
+        <y>420</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D205 S1</cmdon>
+        <cmdoff>D205 S0</cmdoff>
+        <lampon>D217 S1</lampon>
+        <lampoff>D217 S0</lampoff>
+    </device>
+    
+    <device id="D206">
+        <type>Switch PB Square Red</type>
+        <name>CLOSE DOOR</name>
+        <x>60</x>
+        <y>420</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D206 S1</cmdon>
+        <cmdoff>D206 S0</cmdoff>
+        <lampon>D218 S1</lampon>
+        <lampoff>D218 S0</lampoff>
+    </device>
+    
+    <device id="D207">
+        <type>Switch PB Square Black</type>
+        <name>PTT</name>
+        <x>106</x>
+        <y>466</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D207 S1</cmdon>
+        <cmdoff>D207 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D208">
+        <type>Switch PB Square Red</type>
+        <name>EMERGENCY INTERCOM</name>
+        <x>148</x>
+        <y>466</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D208 S1</cmdon>
+        <cmdoff>D208 S0</cmdoff>
+        <lampon>D219 S1</lampon>
+        <lampoff>D219 S0</lampoff>
+    </device>
+    
+    <device id="D209">
+        <type>Switch PB Square Yellow</type>
+        <name>CAB TO CAB</name>
+        <x>190</x>
+        <y>466</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D209 S1</cmdon>
+        <cmdoff>D209 S0</cmdoff>
+        <lampon>D220 S1</lampon>
+        <lampoff>D220 S0</lampoff>
+    </device>
+    
+    <device id="D210">
+        <type>Switch PB Square Black</type>
+        <name>CAB TO PA</name>
+        <x>232</x>
+        <y>466</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D210 S1</cmdon>
+        <cmdoff>D210 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D211">
+        <type>Switch</type>
+        <name>EMERGENCY STOP</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon>D211 S1</cmdon>
+        <cmdoff>D211 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D212">
+        <type>Switch PB Square Black</type>
+        <name>HORN</name>
+        <x>285</x>
+        <y>490</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D212 S1</cmdon>
+        <cmdoff>D212 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    
+    <!-- Start RV-0-WM-RM2 Area -->
+    
+    
+    
+    
+    
+    
+    <!--  End RV-0-WM-RM2 Area-->
+    
+    
+    <device id="D216">
+        <type>Switch PB Square Red</type>
+        <name>GENERAL FAULT</name>
+        <x>667</x>
+        <y>33</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D216 S1</cmdon>
+        <cmdoff>D216 S0</cmdoff>
+        <lampon>D201 S1</lampon>
+        <lampoff>D201 S0</lampoff>
+    </device>
+    
+    <device id="D217">
+        <type></type>
+        <name></name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon></cmdon>
+        <cmdoff></cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D218">
+        <type>Switch Rotary Red</type>
+        <name>PARKING BRAKE</name>
+        <x>667</x>
+        <y>98</y>
+        <width>40</width>
+        <height>42</height>
+        <cmdon>D218 S1</cmdon>
+        <cmdoff>D218 S0</cmdoff>
+        <lampon>D202 S1</lampon>
+        <lampoff>D202 S0</lampoff>
+    </device>
+    
+    <device id="D219">
+        <type>Switch Yes-No Black</type>
+        <name>PIS SOUND</name>
+        <x>739</x>
+        <y>100</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D210 S1</cmdon>
+        <cmdoff>D210 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D220">
+        <type>Switch Yes-No Black</type>
+        <name>ELECTRIC UNCOUPLE OFF-ON</name>
+        <x>667</x>
+        <y>164</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D220 S1</cmdon>
+        <cmdoff>D220 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D221">
+        <type>Switch PB Square Black</type>
+        <name>UNCOUPLING</name>
+        <x>739</x>
+        <y>164</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D221 S1</cmdon>
+        <cmdoff>D221 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D222">
+        <type>Switch Yes-No Black</type>
+        <name>PNEUMATIC UNCOUPLE OFF-ON</name>
+        <x>667</x>
+        <y>230</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D222 S1</cmdon>
+        <cmdoff>D222 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D223">
+        <type>Switch</type>
+        <name>HEAD-NEUTRAL-TAIL</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon>D223 S1</cmdon>
+        <cmdoff>D223 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D224">
+        <type>Switch Yes-No Yellow</type>
+        <name>DESK LIGHT</name>
+        <x>667</x>
+        <y>296</y>
+        <width>39</width>
+        <height>37</height>
+        <cmdon>D224 S1</cmdon>
+        <cmdoff>D224 S0</cmdoff>
+        <lampon>D203 S1</lampon>
+        <lampoff>D203 S0</lampoff>
+    </device>
+    
+    <device id="D225">
+        <type>Switch Rotary Yellow</type>
+        <name>SALOON LIGHT</name>
+        <x>739</x>
+        <y>296</y>
+        <width>40</width>
+        <height>38</height>
+        <cmdon>D225 S1</cmdon>
+        <cmdoff>D225 S0</cmdoff>
+        <lampon>D204 S1</lampon>
+        <lampoff>D204 S0</lampoff>
+    </device>
+    
+    <device id="D226">
+        <type>Switch Yes-No Yellow</type>
+        <name>DIMITER</name>
+        <x>667</x>
+        <y>362</y>
+        <width>39</width>
+        <height>37</height>
+        <cmdon>D226 S1</cmdon>
+        <cmdoff>D226 S0</cmdoff>
+        <lampon>D205 S1</lampon>
+        <lampoff>D205 S0</lampoff>
+    </device>
+    
+    <device id="D227">
+        <type>Switch Yes-No Yellow</type>
+        <name>CAB LIGHT</name>
+        <x>739</x>
+        <y>362</y>
+        <width>39</width>
+        <height>37</height>
+        <cmdon>D227 S1</cmdon>
+        <cmdoff>D227 S0</cmdoff>
+        <lampon>D206 S1</lampon>
+        <lampoff>D206 S0</lampoff>
+    </device>
+    
+    <device id="D228">
+        <type>Switch Yes-No Black</type>
+        <name>WIND SHIED WASHER OFF-ON</name>
+        <x>667</x>
+        <y>428</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D228 S1</cmdon>
+        <cmdoff>D228 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D229">
+        <type>Switch Yes-No Black</type>
+        <name>DIM - BRIGHT</name>
+        <x>739</x>
+        <y>428</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>D229 S1</cmdon>
+        <cmdoff>D229 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D230">
+        <type>Switch</type>
+        <name>WIND SHIED WIPPER 0-1-2-3</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon>D230 S1</cmdon>
+        <cmdoff>D230 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    <device id="D231">
+        <type>Switch</type>
+        <name>CAB VENTILATION 0-3-2-1</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+        <cmdon>D231 S1</cmdon>
+        <cmdoff>D231 S0</cmdoff>
+        <lampon></lampon>
+        <lampoff></lampoff>
+    </device>
+    
+    
+</root>

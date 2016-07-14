@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <device id="C301">
+        <c1carid>K301</c1carid>
+        <type>Lamp Red</type>
+        <name>Door Control</name>
+        <x>25</x>
+        <y>42</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C301 S0</cmdccaroff>
+        <cmdc1caroff>K301 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C302">
+        <c1carid>K302</c1carid>
+        <type>Lamp Red</type>
+        <name>BCU Fault</name>
+        <x>69</x>
+        <y>42</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C302 S0</cmdccaroff>
+        <cmdc1caroff>K302 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C303">
+        <c1carid>K303</c1carid>
+        <type>Spare</type>
+        <name>Spare</name>
+        <x>118</x>
+        <y>42</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C303 S0</cmdccaroff>
+        <cmdc1caroff>K303 S0</cmdc1caroff>
+    </device>
+
+    <device id="C304">
+        <c1carid>K304</c1carid>
+        <type>Lamp Red</type>
+        <name>LOW AIR PRESS</name>
+        <x>195</x>
+        <y>42</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C304 S0</cmdccaroff>
+        <cmdc1caroff>K304 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C305">
+        <c1carid>K305</c1carid>
+        <type>Lamp Red</type>
+        <name>BATT. CHARGER</name>
+        <x>245</x>
+        <y>42</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C305 S0</cmdccaroff>
+        <cmdc1caroff>K305 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C306">
+        <c1carid>K306</c1carid>
+        <type>Lamp Red</type>
+        <name>AUX. CONVERTER</name>
+        <x>292</x>
+        <y>42</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C306 S0</cmdccaroff>
+        <cmdc1caroff>K306 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C307">
+        <c1carid>K307</c1carid>
+        <type>Lamp Red</type>
+        <name>AIR COND. 1</name>
+        <x>25</x>
+        <y>105</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C307 S0</cmdccaroff>
+        <cmdc1caroff>K307 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C308">
+        <c1carid>K308</c1carid>
+        <type>Spare</type>
+        <name>Spare</name>
+        <x>69</x>
+        <y>105</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C308 S0</cmdccaroff>
+        <cmdc1caroff>K308 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C309">
+        <c1carid>K309</c1carid>
+        <type>Spare</type>
+        <name>Spare</name>
+        <x>245</x>
+        <y>105</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C309 S0</cmdccaroff>
+        <cmdc1caroff>K309 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C310">
+        <c1carid>K310</c1carid>
+        <type>Lamp Red</type>
+        <name>AIR COND. 2</name>
+        <x>292</x>
+        <y>105</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C310 S0</cmdccaroff>
+        <cmdc1caroff>K301 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C311">
+        <c1carid>K311</c1carid>
+        <type>Lamp Yellow</type>
+        <name>BCU F. STORED</name>
+        <x>25</x>
+        <y>182</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C311 S0</cmdccaroff>
+        <cmdc1caroff>K311 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C312">
+        <c1carid>K312</c1carid>
+        <type>Spare</type>
+        <name>Spare</name>
+        <x>69</x>
+        <y>182</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C312 S0</cmdccaroff>
+        <cmdc1caroff>K312 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C313">
+        <c1carid>K313</c1carid>
+        <type>Lamp Yellow</type>
+        <name>BRAKE CUT-OUT</name>
+        <x>139</x>
+        <y>201</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C313 S0</cmdccaroff>
+        <cmdc1caroff>K313 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C314">
+        <c1carid>K314</c1carid>
+        <type>Lamp Yellow</type>
+        <name>BRAKE CUT-OUT</name>
+        <x>176</x>
+        <y>201</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C314 S0</cmdccaroff>
+        <cmdc1caroff>K314 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C315">
+        <c1carid>K315</c1carid>
+        <type>Lamp Yellow</type>
+        <name>PARK BR. RELEASE</name>
+        <x>245</x>
+        <y>182</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C315 S0</cmdccaroff>
+        <cmdc1caroff>K315 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C316">
+        <c1carid>K316</c1carid>
+        <type>Lamp Yellow</type>
+        <name>BRAKES ON</name>
+        <x>292</x>
+        <y>182</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C316 S0</cmdccaroff>
+        <cmdc1caroff>K316 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C317">
+        <c1carid>K317</c1carid>
+        <type>Spare</type>
+        <name>Spare</name>
+        <x>69</x>
+        <y>245</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C317 S0</cmdccaroff>
+        <cmdc1caroff>K317 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C318">
+        <c1carid>K318</c1carid>
+        <type>Lamp Yellow</type>
+        <name>BRAKE RELEASED</name>
+        <x>139</x>
+        <y>265</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C318 S0</cmdccaroff>
+        <cmdc1caroff>K318 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C319">
+        <c1carid>K319</c1carid>
+        <type>Lamp Yellow</type>
+        <name>BRAKE RELEASED</name>
+        <x>176</x>
+        <y>265</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C319 S0</cmdccaroff>
+        <cmdc1caroff>K319 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C320">
+        <c1carid>K320</c1carid>
+        <type>Lamp Yellow</type>
+        <name>MCB TRIPED</name>
+        <x>245</x>
+        <y>245</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C320 S0</cmdccaroff>
+        <cmdc1caroff>K320 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C321">
+        <c1carid>K321</c1carid>
+        <type>Lamp Yellow</type>
+        <name>MPIS IN ISOLATED</name>
+        <x>292</x>
+        <y>245</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdccaroff>C321 S0</cmdccaroff>
+        <cmdc1caroff>K321 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C201">
+        <c1carid>K201</c1carid>
+        <type>Switch PB Square Black</type>
+        <name>Lamp Test</name>
+        <x>21</x>
+        <y>237</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdccaroff>C201 S0</cmdccaroff>
+        <cmdc1caroff>K201 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C101">
+        <c1carid>K101</c1carid>
+        <type>Breaker</type>
+        <name>BATTERY MAIN CONNECTOR</name>
+        <x>109</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C101 S0</cmdccaroff>
+        <cmdc1caroff>K101 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C102">
+        <c1carid>K102</c1carid>
+        <type>Breaker</type>
+        <name>CURRENT COLLECTOR 750 V MONITORING</name>
+        <x>137</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C102 S0</cmdccaroff>
+        <cmdc1caroff>K102 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C103">
+        <c1carid>K103</c1carid>
+        <type>Breaker</type>
+        <name>AUX INVERTER</name>
+        <x>165</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C103 S0</cmdccaroff>
+        <cmdc1caroff>K103 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C104">
+        <c1carid>K104</c1carid>
+        <type>Breaker</type>
+        <name>BCU+BCU-P</name>
+        <x>193</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C104 S0</cmdccaroff>
+        <cmdc1caroff>K104 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C105">
+        <c1carid>K105</c1carid>
+        <type>Breaker</type>
+        <name>PARKING BRAKE VALVE</name>
+        <x>221</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C105 S0</cmdccaroff>
+        <cmdc1caroff>K105 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C106">
+        <c1carid>K106</c1carid>
+        <type>Breaker</type>
+        <name>PARKING BRAKE CONTROL</name>
+        <x>249</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C106 S0</cmdccaroff>
+        <cmdc1caroff>K106 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C107">
+        <c1carid>K107</c1carid>
+        <type>Breaker</type>
+        <name>PNEUM. BRAKE CUT OUT</name>
+        <x>277</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C107 S0</cmdccaroff>
+        <cmdc1caroff>K107 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C108">
+        <c1carid>K108</c1carid>
+        <type>Breaker</type>
+        <name>AUX. INVERTER AIR COND. CONTROL</name>
+        <x>305</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C108 S0</cmdccaroff>
+        <cmdc1caroff>K108 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C109">
+        <c1carid>K109</c1carid>
+        <type>Breaker</type>
+        <name>AIR COMPRESSOR INDICATION LIGHTS</name>
+        <x>333</x>
+        <y>343</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C109 S0</cmdccaroff>
+        <cmdc1caroff>K109 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C110">
+        <c1carid>K110</c1carid>
+        <type>Breaker</type>
+        <name>EMERGENCY BRAKE</name>
+        <x>109</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C110 S0</cmdccaroff>
+        <cmdc1caroff>K110 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C111">
+        <c1carid>K111</c1carid>
+        <type>Breaker</type>
+        <name>PA CENTRAL UNIT</name>
+        <x>137</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C111 S0</cmdccaroff>
+        <cmdc1caroff>K111 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C112">
+        <c1carid>K112</c1carid>
+        <type>Breaker</type>
+        <name>LIGHT</name>
+        <x>165</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C112 S0</cmdccaroff>
+        <cmdc1caroff>K112 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C113">
+        <c1carid>K113</c1carid>
+        <type>Breaker</type>
+        <name>EMERGENCY LIGHT</name>
+        <x>193</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C113 S0</cmdccaroff>
+        <cmdc1caroff>K113 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C114">
+        <c1carid>K114</c1carid>
+        <type>Breaker</type>
+        <name>AIR COND. CONTROL 1</name>
+        <x>221</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C114 S0</cmdccaroff>
+        <cmdc1caroff>K114 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C115">
+        <c1carid>K115</c1carid>
+        <type>Breaker</type>
+        <name>AIR COND. CONTROL 2</name>
+        <x>249</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C115 S0</cmdccaroff>
+        <cmdc1caroff>K115 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C116">
+        <c1carid>K116</c1carid>
+        <type>Breaker</type>
+        <name>DOOR SUPPLY 1</name>
+        <x>277</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C116 S0</cmdccaroff>
+        <cmdc1caroff>K116 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C117">
+        <c1carid>K117</c1carid>
+        <type>Breaker</type>
+        <name>DOOR SUPPLY 2</name>
+        <x>305</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C117 S0</cmdccaroff>
+        <cmdc1caroff>K117 S0</cmdc1caroff>
+    </device>
+    
+    <device id="C118">
+        <c1carid>K118</c1carid>
+        <type>Breaker</type>
+        <name>DOOR CONTROL</name>
+        <x>333</x>
+        <y>505</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdccaroff>C118 S0</cmdccaroff>
+        <cmdc1caroff>K118 S0</cmdc1caroff>
+    </device>        
+    
+</root>

@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<panel>
+    
+    <device id="A101">
+        <type>Main Breaker</type>
+        <name>Main Breaker</name>
+        <x>61</x>
+        <y>77</y>
+        <width>36</width>
+        <height>51</height>
+        <cmdoff>A101 S0</cmdoff>
+    </device>
+    
+    <device id="A102">
+        <type>Breaker</type>
+        <name>CURRENT COLLECTOR</name>
+        <x>133</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A102 S0</cmdoff>
+    </device>
+    
+    <device id="A103">
+        <type>Breaker</type>
+        <name>TRAIN CONTROL 1</name>
+        <x>161</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A103 S0</cmdoff>
+    </device>
+    
+    <device id="A104">
+        <type>Breaker</type>
+        <name>TRAIN CONTROL 2</name>
+        <x>189</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A104 S0</cmdoff>
+    </device>
+    
+    <device id="A105">
+        <type>Breaker</type>
+        <name>110 V TRAC CONTAINER PROP. BLOWER</name>
+        <x>217</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A105 S0</cmdoff>
+    </device>
+    
+    <device id="A106">
+        <type>Breaker</type>
+        <name>BCU+BCU-P</name>
+        <x>245</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A106 S0</cmdoff>
+    </device> 
+    
+    <device id="A107">
+        <type>Breaker</type>
+        <name>PARKING BRAKE VALVE</name>
+        <x>273</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A107 S0</cmdoff>
+    </device>  
+    
+    <device id="A108">
+        <type>Breaker</type>
+        <name>PARKING BRAKE CONTROL</name>
+        <x>301</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A108 S0</cmdoff>
+    </device>
+    
+    <device id="A109">
+        <type>Breaker</type>
+        <name>PNEU BRAKE CUT OUT</name>
+        <x>329</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A109 S0</cmdoff>
+    </device>
+    
+    <device id="A110">
+        <type>Breaker</type>
+        <name>ATC DISPLAY</name>
+        <x>357</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A110 S0</cmdoff>
+    </device>
+    
+    <device id="A111">
+        <type>Breaker</type>
+        <name>INDICATION LIGHTS</name>
+        <x>385</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A111 S0</cmdoff>
+    </device>
+
+    <device id="A112">
+        <type>Breaker</type>
+        <name>SAFETY LOOP</name>
+        <x>413</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A112 S0</cmdoff>
+    </device>
+    
+    <device id="A113">
+        <type>Breaker</type>
+        <name>COMMUNICATION</name>
+        <x>441</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A113 S0</cmdoff>
+    </device>
+    
+    <device id="A114">
+        <type>Breaker</type>
+        <name>AUXILIARIES CONTROL</name>
+        <x>469</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A114 S0</cmdoff>
+    </device>
+    
+    <device id="A115">
+        <type>Breaker</type>
+        <name>INSTRUMENTS 24 V</name>
+        <x>497</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A115 S0</cmdoff>
+    </device>
+    
+    <device id="A116">
+        <type>Breaker</type>
+        <name>SOCKET AC 230 V</name>
+        <x>525</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A116 S0</cmdoff>
+    </device>
+    
+    <device id="A117">
+        <type>Breaker</type>
+        <name>CAB BLOWER</name>
+        <x>553</x>
+        <y>77</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A117 S0</cmdoff>
+    </device>
+    
+    <device id="A118">
+        <type>Breaker</type>
+        <name>PIS</name>
+        <x>133</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A118 S0</cmdoff>
+    </device>
+    
+    <device id="A119">
+        <type>Breaker</type>
+        <name>HEAD LIGHT</name>
+        <x>161</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A119 S0</cmdoff>
+    </device>
+    
+    <device id="A120">
+        <type>Breaker</type>
+        <name>LIGHTING CONTROL</name>
+        <x>189</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A120 S0</cmdoff>
+    </device>
+    
+    <device id="A121">
+        <type>Breaker</type>
+        <name>LIGHT</name>
+        <x>217</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A121 S0</cmdoff>
+    </device>
+    
+    <device id="A122">
+        <type>Breaker</type>
+        <name>EMERGENCY LIGHT</name>
+        <x>245</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A122 S0</cmdoff>
+    </device>
+    
+    <device id="A123">
+        <type>Breaker</type>
+        <name>AIR COND. CONTROL 1</name>
+        <x>273</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A123 S0</cmdoff>
+    </device>
+    
+    <device id="A124">
+        <type>Breaker</type>
+        <name>AIR COND. CONTROL 2</name>
+        <x>301</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A124 S0</cmdoff>
+    </device>
+    
+    <device id="A125">
+        <type>Breaker</type>
+        <name>COUPLING CONTROL</name>
+        <x>329</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A125 S0</cmdoff>
+    </device>
+    
+    <device id="A126">
+        <type>Breaker</type>
+        <name>PASS. INFORMATION</name>
+        <x>357</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A126 S0</cmdoff>
+    </device>
+    
+    <device id="A127">
+        <type>Breaker</type>
+        <name>DOOR CONTROL 1</name>
+        <x>385</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A127 S0</cmdoff>
+    </device>
+    
+    <device id="A128">
+        <type>Breaker</type>
+        <name>DOOR SUPPLY 1</name>
+        <x>413</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A128 S0</cmdoff>
+    </device>
+    
+    <device id="A129">
+        <type>Breaker</type>
+        <name>DOOR SUPPLY 2</name>
+        <x>441</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A129 S0</cmdoff>
+    </device>
+    
+    <device id="A130">
+        <type>Breaker</type>
+        <name>DOOR CONTROL 2</name>
+        <x>469</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A130 S0</cmdoff>
+    </device>
+    
+    <device id="A131">
+        <type>Breaker</type>
+        <name>TAIL LIGHT</name>
+        <x>497</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A131 S0</cmdoff>
+    </device>
+    
+    <device id="A132">
+        <type>Breaker</type>
+        <name>WASHER / WIPER HORN</name>
+        <x>525</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A132 S0</cmdoff>
+    </device>
+    
+    <device id="A133">
+        <type>Breaker</type>
+        <name>INSTRUMENTS 110 V</name>
+        <x>553</x>
+        <y>224</y>
+        <width>27</width>
+        <height>51</height>
+        <cmdoff>A133 S0</cmdoff>
+    </device>
+    
+    <device id="A201">
+        <type>Switch By Pass</type>
+        <name>DOOR RELASE BYPASSED</name>
+        <x>36</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A201 S1</cmdon>
+        <cmdoff>A201 S0</cmdoff>
+    </device>
+    
+    <device id="A202">
+        <type>Switch By Pass</type>
+        <name>DOOR LOOP BYPASSED</name>
+        <x>91</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A202 S1</cmdon>
+        <cmdoff>A202 S0</cmdoff>
+    </device>
+    
+    <device id="A203">
+        <type>Switch By Pass</type>
+        <name>ATC FAULT SWITCH BYPASSED</name>
+        <x>145</x>
+        <y>392</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A203 S1</cmdon>
+        <cmdoff>A203 S0</cmdoff>
+    </device>
+    
+    <device id="A204">
+        <type>Switch By Pass</type>
+        <name>SAFETY LOOP BYPASSED</name>
+        <x>200</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A204 S1</cmdon>
+        <cmdoff>A204 S0</cmdoff>
+    </device>
+    
+    <device id="A205">
+        <type>Switch PB Permit</type>
+        <name>PA MASTER</name>
+        <x>278</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A205 S1</cmdon>
+        <cmdoff>A205 S0</cmdoff>
+    </device>
+    
+    <device id="A206">
+        <type>Switch PB Permit</type>
+        <name>FULL TRACTION EFFORT</name>
+        <x>340</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A206 S1</cmdon>
+        <cmdoff>A206 S0</cmdoff>
+    </device>
+    
+    <device id="A207">
+        <type>Switch Yes-No Black</type>
+        <name>ATO DOOR OPENING YES-NO</name>
+        <x>406</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A207 S1</cmdon>
+        <cmdoff>A207 S0</cmdoff>
+    </device>
+    
+    <device id="A208">
+        <type>Switch PB Square Black</type>
+        <name>LAMP TEST</name>
+        <x>471</x>
+        <y>391</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A208 S1</cmdon>
+        <cmdoff>A208 S0</cmdoff>
+    </device>
+    
+    <device id="A209">
+        <type>Switch Rotary Black</type>
+        <name>AIR CONDITIONING OFF-0-ON</name>
+        <x>37</x>
+        <y>482</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A209 S1</cmdon>
+        <cmdoff>A209 S0</cmdoff>
+    </device>
+    
+    <device id="A210">
+        <type>Switch Rotary Yellow</type>
+        <name>AIR RECIRCULATION OFF-0-ON</name>
+        <x>111</x>
+        <y>482</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A210 S1</cmdon>
+        <cmdoff>A210 S0</cmdoff>
+        <lampon>A249 S1</lampon>
+        <lampoff>A249 S0</lampoff>
+    </device>
+    
+    <device id="A211">
+        <type>Switch Rotary Black</type>
+        <name>CURRENT COLLECTOR SHOES OFF-0-ON</name>
+        <x>185</x>
+        <y>482</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A211 S1</cmdon>
+        <cmdoff>A211 S0</cmdoff>
+    </device>
+    
+    <device id="A212">
+        <type>Switch PB Permit</type>
+        <name>CLEAR LINE</name>
+        <x>278</x>
+        <y>482</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A212 S1</cmdon>
+        <cmdoff>A212 S0</cmdoff>
+    </device>
+    
+    <device id="A213">
+        <type>Switch Rotary Yellow</type>
+        <name>AUXILIARIES Equipment OFF-0-ON</name>
+        <x>340</x>
+        <y>482</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A213 S1</cmdon>
+        <cmdoff>A213 S0</cmdoff>
+        <lampon>A250 S1</lampon>
+        <lampoff>A250 S0</lampoff>
+    </device>
+    
+    <device id="A214">
+        <type>Switch PB Square Black</type>
+        <name>AUX. CONV. HELPSTART</name>
+        <x>406</x>
+        <y>482</y>
+        <width>40</width>
+        <height>40</height>
+        <cmdon>A214 S1</cmdon>
+        <cmdoff>A214 S0</cmdoff>
+    </device>
+    
+    <device id="A215">
+        <type>Spare</type>
+        <name>Spare</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
+    <device id="A401">
+        <type>Buzzer</type>
+        <name>OVER SPEED</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
+    <device id="A402">
+        <type>Buzzer</type>
+        <name>GENERAL FAULT</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
+    <device id="A301">
+        <type>Lamp Red</type>
+        <name>PROP. SYS. FAULT</name>
+        <x>26</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>        
+        <cmdoff>A301 S0</cmdoff>
+        <cmdon>A301 S1</cmdon>
+        <cmdflash>A301 S2</cmdflash>
+    </device>
+    
+    <device id="A302">
+        <type>Lamp Red</type>
+        <name>PROP. BLOWER</name>
+        <x>64</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A302 S0</cmdoff>
+        <cmdon>A302 S1</cmdon>
+        <cmdflash>A302 S2</cmdflash>
+    </device>
+    
+    <device id="A303">
+        <type>Lamp Red</type>
+        <name>PROP. OVERHEAT</name>
+        <x>102</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A303 S0</cmdoff>
+        <cmdon>A303 S1</cmdon>
+        <cmdflash>A303 S2</cmdflash>
+    </device>
+    
+    <device id="A304">
+        <type>Lamp Red</type>
+        <name>AUX. POW. SUPPLY</name>
+        <x>171</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A304 S0</cmdoff>
+        <cmdon>A304 S1</cmdon>
+        <cmdflash>A304 S2</cmdflash>
+    </device>
+    
+    <device id="A305">
+        <type>Lamp Red</type>
+        <name>BCU FAULT</name>
+        <x>209</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A305 S0</cmdoff>
+        <cmdon>A305 S1</cmdon>
+        <cmdflash>A305 S2</cmdflash>
+    </device>
+    
+    <device id="A306">
+        <type>Lamp Red</type>
+        <name>LOW AIR PRESS</name>
+        <x>247</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A306 S0</cmdoff>
+        <cmdon>A306 S1</cmdon>
+        <cmdflash>A306 S2</cmdflash>
+    </device>
+    
+    <device id="A307">
+        <type>Lamp Red</type>
+        <name>PROP1. SYS. FAULT</name>
+        <x>346</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A307 S0</cmdoff>
+        <cmdon>A307 S1</cmdon>
+        <cmdflash>A307 S2</cmdflash>
+    </device>
+    
+    <device id="A308">
+        <type>Lamp Red</type>
+        <name>PROP2. SYS. FAULT</name>
+        <x>384</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A308 S0</cmdoff>
+        <cmdon>A308 S1</cmdon>
+        <cmdflash>A308 S2</cmdflash>
+    </device>
+    
+    <device id="A309">
+        <type>Lamp Red</type>
+        <name>PROP. BLOWER</name>
+        <x>422</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A309 S0</cmdoff>
+        <cmdon>A309 S1</cmdon>
+        <cmdflash>A309 S2</cmdflash>
+    </device>
+    
+    <device id="A310">
+        <type>Lamp Red</type>
+        <name>PROP. OVERHEAT</name>
+        <x>460</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A310 S0</cmdoff>
+        <cmdon>A310 S1</cmdon>
+        <cmdflash>A310 S2</cmdflash>
+    </device>
+    
+    <device id="A311">
+        <type>Lamp Red</type>
+        <name>BCU FAULT</name>
+        <x>498</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A311 S0</cmdoff>
+        <cmdon>A311 S1</cmdon>
+        <cmdflash>A311 S2</cmdflash>
+    </device>
+    
+    <device id="A312">
+        <type>Lamp Red</type>
+        <name>LOW AIR PRESS</name>
+        <x>536</x>
+        <y>573</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A312 S0</cmdoff>
+        <cmdon>A312 S1</cmdon>
+        <cmdflash>A312 S2</cmdflash>
+    </device>
+    
+    <device id="A313">
+        <type>Lamp Red</type>
+        <name>ATP FAULT</name>
+        <x>26</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A313 S0</cmdoff>
+        <cmdon>A313 S1</cmdon>
+        <cmdflash>A313 S2</cmdflash>
+    </device>
+    
+    <device id="A314">
+        <type>Lamp Red</type>
+        <name>DOOR CONTROL</name>
+        <x>64</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A314 S0</cmdoff>
+        <cmdon>A314 S1</cmdon>
+        <cmdflash>A314 S2</cmdflash>
+    </device>
+    
+    <device id="A315">
+        <type>Lamp Red</type>
+        <name>PA FAULT</name>
+        <x>102</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A315 S0</cmdoff>
+        <cmdon>A315 S1</cmdon>
+        <cmdflash>A315 S2</cmdflash>
+    </device>
+    
+    <device id="A316">
+        <type>Lamp Red</type>
+        <name>AIR COND.</name>
+        <x>171</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A316 S0</cmdoff>
+        <cmdon>A316 S1</cmdon>
+        <cmdflash>316 S2</cmdflash>
+    </device>
+    
+    <device id="A317">
+        <type>Lamp Red</type>
+        <name>PASS. EMRGENCY</name>
+        <x>209</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A317 S0</cmdoff>
+        <cmdon>A317 S1</cmdon>
+        <cmdflash>A317 S2</cmdflash>
+    </device>
+    
+    <device id="A318">
+        <type>Lamp Red</type>
+        <name>CONTACTORS</name>
+        <x>247</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A318 S0</cmdoff>
+        <cmdon>A318 S1</cmdon>
+        <cmdflash>A318 S2</cmdflash>
+    </device>
+    
+    <device id="A319">
+        <type>Lamp Red</type>
+        <name>AIR COND.1</name>
+        <x>346</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A319 S0</cmdoff>
+        <cmdon>A319 S1</cmdon>
+        <cmdflash>A319 S2</cmdflash>
+    </device>
+    
+    <device id="A320">
+        <type>Lamp Red</type>
+        <name>DOOR CONTROL</name>
+        <x>384</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A320 S0</cmdoff>
+        <cmdon>A320 S1</cmdon>
+        <cmdflash>A320 S2</cmdflash>
+    </device>
+    
+    <device id="A321">
+        <type>Spare</type>
+        <name>Spare</name>
+        <x>346</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A321 S0</cmdoff>
+        <cmdon>A321 S1</cmdon>
+        <cmdflash>A321 S2</cmdflash>
+    </device>
+    
+    <device id="A322">
+        <type>Lamp Red</type>
+        <name>AIR COND.2</name>
+        <x>536</x>
+        <y>625</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A322 S0</cmdoff>
+        <cmdon>A322 S1</cmdon>
+        <cmdflash>A322 S2</cmdflash>
+    </device>
+    
+    <device id="A323">
+        <type>Lamp Yellow</type>
+        <name>BRAKE ON</name>
+        <x>26</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A323 S0</cmdoff>
+        <cmdon>A323 S1</cmdon>
+        <cmdflash>A323 S2</cmdflash>
+    </device>
+    
+    <device id="A324">
+        <type>Lamp Yellow</type>
+        <name>BRAKE RELEASE</name>
+        <x>64</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A324 S0</cmdoff>
+        <cmdon>A324 S1</cmdon>
+        <cmdflash>A324 S2</cmdflash>
+    </device>
+    
+    <device id="A325">
+        <type>Lamp Yellow</type>
+        <name>BRAKE CUT-OUT</name>
+        <x>102</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A325 S0</cmdoff>
+        <cmdon>A325 S1</cmdon>
+        <cmdflash>A325 S2</cmdflash>
+    </device>
+    
+    <device id="A326">
+        <type>Lamp Yellow</type>
+        <name>PROP. ISOLATED</name>
+        <x>137</x>
+        <y>712</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A326 S0</cmdoff>
+        <cmdon>A326 S1</cmdon>
+        <cmdflash>A326 S2</cmdflash>
+    </device>
+    
+    <device id="A327">
+        <type>Lamp Yellow</type>
+        <name>SAFETY LOOP</name>
+        <x>171</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A327 S0</cmdoff>
+        <cmdon>A327 S1</cmdon>
+        <cmdflash>A327 S2</cmdflash>
+    </device>
+    
+    <device id="A328">
+        <type>Lamp Yellow</type>
+        <name>TCU F. STORED</name>
+        <x>209</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A328 S0</cmdoff>
+        <cmdon>A328 S1</cmdon>
+        <cmdflash>A328 S2</cmdflash>
+    </device>
+    
+    <device id="A329">
+        <type>Lamp Yellow</type>
+        <name>BCU F. STORED</name>
+        <x>247</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A329 S0</cmdoff>
+        <cmdon>A329 S1</cmdon>
+        <cmdflash>A329 S2</cmdflash>
+    </device>
+    
+    <device id="A330">
+        <type>Lamp Yellow</type>
+        <name>BRAKE ON</name>
+        <x>346</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A330 S0</cmdoff>
+        <cmdon>A330 S1</cmdon>
+        <cmdflash>A330 S2</cmdflash>
+    </device>
+    
+    <device id="A331">
+        <type>Lamp Yellow</type>
+        <name>PARK BR. RELEAS</name>
+        <x>384</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A331 S0</cmdoff>
+        <cmdon>A331 S1</cmdon>
+        <cmdflash>A331 S2</cmdflash>
+    </device>
+    
+    <device id="A332">
+        <type>Lamp Yellow</type>
+        <name>BRAKE CUT-OUT</name>
+        <x>422</x>
+        <y>712</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A332 S0</cmdoff>
+        <cmdon>A332 S1</cmdon>
+        <cmdflash>A332 S2</cmdflash>
+    </device>
+    
+    <device id="A333">
+        <type>Lamp Yellow</type>
+        <name>BRAKE CUT-OUT</name>
+        <x>460</x>
+        <y>712</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A333 S0</cmdoff>
+        <cmdon>A333 S1</cmdon>
+        <cmdflash>A333 S2</cmdflash>
+    </device>
+    
+    <device id="A334">
+        <type>Lamp Yellow</type>
+        <name>TCU F. STORED</name>
+        <x>498</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A334 S0</cmdoff>
+        <cmdon>A334 S1</cmdon>
+        <cmdflash>A334 S2</cmdflash>
+    </device>
+    
+    <device id="A335">
+        <type>Lamp Yellow</type>
+        <name>BCU F. STORED</name>
+        <x>539</x>
+        <y>704</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A335 S0</cmdoff>
+        <cmdon>A335 S1</cmdon>
+        <cmdflash>A335 S2</cmdflash>
+    </device>
+    
+    <device id="A336">
+        <type>Lamp Yellow</type>
+        <name>HSCB OPEN</name>
+        <x>26</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A336 S0</cmdoff>
+        <cmdon>A336 S1</cmdon>
+        <cmdflash>A336 S2</cmdflash>
+    </device>
+    
+    <device id="A337">
+        <type>Lamp Yellow</type>
+        <name>MPIS IN ISOLATED</name>
+        <x>64</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A337 S0</cmdoff>
+        <cmdon>A337 S1</cmdon>
+        <cmdflash>A337 S2</cmdflash>
+    </device>
+    
+    <device id="A338">
+        <type>Lamp Yellow</type>
+        <name>BYPASSED</name>
+        <x>102</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A338 S0</cmdoff>
+        <cmdon>A338 S1</cmdon>
+        <cmdflash>A338 S2</cmdflash>
+    </device>
+    
+    <device id="A339">
+        <type>Lamp Yellow</type>
+        <name>750 LOSS</name>
+        <x>136</x>
+        <y>770</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A339 S0</cmdoff>
+        <cmdon>A339 S1</cmdon>
+        <cmdflash>A339 S2</cmdflash>
+    </device>
+    
+    <device id="A340">
+        <type>Lamp Yellow</type>
+        <name>UNIT COUPLED</name>
+        <x>171</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A340 S0</cmdoff>
+        <cmdon>A340 S1</cmdon>
+        <cmdflash>A340 S2</cmdflash>
+    </device>
+    
+    <device id="A341">
+        <type>Lamp Yellow</type>
+        <name>MCB TRIPED</name>
+        <x>209</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A341 S0</cmdoff>
+        <cmdon>A341 S1</cmdon>
+        <cmdflash>A341 S2</cmdflash>
+    </device>
+    
+    <device id="A342">
+        <type>Spear</type>
+        <name>Spear</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
+    <device id="A343">
+        <type>Lamp Yellow</type>
+        <name>HSCB OPEN</name>
+        <x>346</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A343 S0</cmdoff>
+        <cmdon>A343 S1</cmdon>
+        <cmdflash>A343 S2</cmdflash>
+    </device>
+    
+    <device id="A344">
+        <type>Lamp Yellow</type>
+        <name>MPIS IN ISOLATED</name>
+        <x>384</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A344 S0</cmdoff>
+        <cmdon>A344 S1</cmdon>
+        <cmdflash>A344 S2</cmdflash>
+    </device>
+    
+    <device id="A345">
+        <type>Lamp Yellow</type>
+        <name>BRAKE RELEASED</name>
+        <x>422</x>
+        <y>770</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A345 S0</cmdoff>
+        <cmdon>A345 S1</cmdon>
+        <cmdflash>A345 S2</cmdflash>
+    </device>
+    
+    <device id="A346">
+        <type>Lamp Yellow</type>
+        <name>BRAKE RELEASED</name>
+        <x>460</x>
+        <y>770</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A346 S0</cmdoff>
+        <cmdon>A346 S1</cmdon>
+        <cmdflash>A346 S2</cmdflash>
+    </device>
+    
+    <device id="A347">
+        <type>Lamp Yellow</type>
+        <name>MCB TRIPED</name>
+        <x>498</x>
+        <y>761</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A347 S0</cmdoff>
+        <cmdon>A347 S1</cmdon>
+        <cmdflash>A347 S2</cmdflash>
+    </device>
+    
+    <device id="A348">
+        <type>Spear</type>
+        <name>Spear</name>
+        <x>536</x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
+    <device id="A349">
+        <type>Lamp Yellow</type>
+        <name>PROP. ISOLATED</name>
+        <x>422</x>
+        <y>823</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A349 S0</cmdoff>
+        <cmdon>A349 S1</cmdon>
+        <cmdflash>A349 S2</cmdflash>
+    </device>
+    
+    <device id="A350">
+        <type>Lamp Yellow</type>
+        <name>PROP. ISOLATED</name>
+        <x>460</x>
+        <y>823</y>
+        <width>30</width>
+        <height>30</height>
+        <cmdoff>A350 S0</cmdoff>
+        <cmdon>A350 S1</cmdon>
+        <cmdflash>A350 S2</cmdflash>
+    </device>
+    
+</panel>
+
+    
