@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.trainsim.instructor;
+package com.ctsim.simemua_instructor;
 
 import java.awt.Image;
 
