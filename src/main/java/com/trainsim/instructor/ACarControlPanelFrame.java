@@ -30,6 +30,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -79,6 +82,9 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 	private BufferedImage lampRedOnImg;
 	private BufferedImage lampYellowOnImg;
 
+	private JSONObject jsonObj;
+	private JSONParser jsonParser;
+
 	/**
 	 * Creates new form ACarControlPanelFrame
 	 */
@@ -92,8 +98,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 		timer = new Timer(50, this);
 		timer.start();
 
-		initCommunication();
-
+		//initCommunication();
 		devices = new HashMap<>();
 		createDevices();
 	}
@@ -216,6 +221,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				element = (Element) nodeList.item(i);
 				devices.put(element.getAttribute("id"), new Device());
+				devices.get(element.getAttribute("id")).setId(element.getAttribute("id"));
 				devices.get(element.getAttribute("id")).setName(element.getElementsByTagName("name").item(0).getTextContent());
 				devices.get(element.getAttribute("id")).setType(element.getElementsByTagName("type").item(0).getTextContent());
 
@@ -263,13 +269,13 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 
 				try {
 					devices.get(element.getAttribute("id")).setWidth(Integer.parseInt(element.getElementsByTagName("width").item(0).getTextContent()));
-				} catch (Exception e) {
+				} catch (DOMException | NumberFormatException e) {
 					devices.get(element.getAttribute("id")).setWidth(0);
 				}
 
 				try {
 					devices.get(element.getAttribute("id")).setHeight(Integer.parseInt(element.getElementsByTagName("height").item(0).getTextContent()));
-				} catch (Exception e) {
+				} catch (DOMException | NumberFormatException e) {
 					devices.get(element.getAttribute("id")).setHeight(0);
 				}
 
@@ -384,110 +390,149 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMouseClicked
-		x = evt.getX();
-		y = evt.getY();
+	private void doClickDevice(int x, int y) {
+		Iterator<Device> devs = devices.values().iterator();
+		Device dev;
 
-		Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
-		while (device.hasNext()) {                                         //loop next to device
-			String key = (String) (device.next());                         //save key
+		while (devs.hasNext()) {
+			dev = devs.next();
+			if ((x >= dev.getX() & x <= dev.getX() + dev.getWidth()) & (y >= dev.getY() & y <= dev.getY() + dev.getHeight())) {
+				switch (dev.getType()) {
 
-			//x >= current position x and x <= (current position x + width) become area x
-			if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
-				&& (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
-
-				//Check device type event on clicked.
-				switch (devices.get(key).getType()) {
 					case "Main Breaker":
-						if (devices.get(key).getImgCurr() != mainBreakerOnImg) {
-							devices.get(key).setImgCurr(mainBreakerOnImg);
-						} else {
-							out.println(devices.get(key).getCmdOff());
-							out.flush();
-							devices.get(key).setImgCurr(mainBreakerOffImg);
-						}
+						doClickDev(dev, mainBreakerOnImg, mainBreakerOffImg);
 						break;
 
 					case "Breaker":
-						if (devices.get(key).getImgCurr() != breakerOnImg) {
-							devices.get(key).setImgCurr(breakerOnImg);
-						} else {
-							out.println(devices.get(key).getCmdOff());
-							out.flush();
-							devices.get(key).setImgCurr(breakerOffImg);
-						}
-						break;
-
-					case "Switch By Pass":
-						if (devices.get(key).getImgCurr() != switchByPassOnImg) {
-							devices.get(key).setImgCurr(switchByPassOnImg);
-						} else {
-							out.println(devices.get(key).getCmdOff());
-							out.flush();
-							devices.get(key).setImgCurr(switchByPassOffImg);
-						}
-						break;
-
-					case "Switch PB Permit":
-						if (devices.get(key).getImgCurr() != switchPBPermitOnImg) {
-							devices.get(key).setImgCurr(switchPBPermitOnImg);
-						} else {
-							out.println(devices.get(key).getCmdOff());
-							out.flush();
-							devices.get(key).setImgCurr(switchPBPermitOffImg);
-						}
-						break;
-
-					case "Switch Yes-No Black":
-						if (devices.get(key).getImgCurr() != switchYesNoBlackOnImg) {
-							devices.get(key).setImgCurr(switchYesNoBlackOnImg);
-						} else {
-							out.println(devices.get(key).getCmdOff());
-							out.flush();
-							devices.get(key).setImgCurr(switchYesNoBlackOffImg);
-						}
-						break;
-
-					case "Switch PB Square Black":
-						if (devices.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
-							devices.get(key).setImgCurr(switchPBSquareBlackOnImg);
-						} else {
-							out.println(devices.get(key).getCmdOff());
-							out.flush();
-							devices.get(key).setImgCurr(switchPBSquareBlackOffImg);
-						}
-						break;
-
-					case "Switch Rotary Black":
-						//Left mouse click. Set lamp off.
-						if (evt.getButton() == 1) {
-							devices.get(key).setImgCurr(switchYesNoBlackOffImg);
-							out.println(devices.get(key).getLampOff());
-							out.flush();
-						} else if (evt.getButton() == 3) {
-							devices.get(key).setImgCurr(switchYesNoBlackOnImg);
-							out.println(devices.get(key).getLampOn());
-							out.flush();
-						}
-						break;
-
-					case "Switch Rotary Yellow":
-						//Left mouse click. Set lamp off.
-						if (evt.getButton() == 1) {
-							devices.get(key).setImgCurr(switchRotaryYellowOffImg);
-							out.println(devices.get(key).getLampOff());
-							out.flush();
-						} else if (evt.getButton() == 3) {
-							devices.get(key).setImgCurr(switchRotaryYellowOnImg);
-							out.println(devices.get(key).getLampOn());
-							out.flush();
-						}
+						doClickDev(dev, breakerOnImg, breakerOffImg);
 						break;
 				}
-
 			}
-
 		}
+	}
+
+	private void doClickDev(Device dev, Image imgOn, Image imgOff) {
+		if (dev.getImgCurr() == imgOn) {
+			jsonObj = new JSONObject();
+			jsonObj.put(dev.getId(), 0);
+			App.OUT_QUEUE.add(jsonObj);
+			dev.setImgCurr(imgOff);
+
+		} else {
+			dev.setImgCurr(imgOn);
+		}
+	}
+
+
+    private void viewPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMouseClicked
+
+		doClickDevice(evt.getX(), evt.getY());
+
+//		x = evt.getX();
+//		y = evt.getY();
+//
+//		Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
+//		while (device.hasNext()) {                                         //loop next to device
+//			String key = (String) (device.next());                         //save key
+//
+//			//x >= current position x and x <= (current position x + width) become area x
+//			if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
+//				&& (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
+//
+//				//Check device type event on clicked.
+//				synchronized (this) {
+//					switch (devices.get(key).getType()) {
+//						case "Main Breaker":
+//							if (devices.get(key).getImgCurr() != mainBreakerOnImg) {
+//								devices.get(key).setImgCurr(mainBreakerOnImg);
+//							} else {
+//								jsonObj = new JSONObject();
+//								jsonObj.put(key, 0);
+//								App.OUT_QUEUE.add(jsonObj);
+//								devices.get(key).setImgCurr(mainBreakerOffImg);
+//							}
+//							break;
+//
+//						case "Breaker":
+//							if (devices.get(key).getImgCurr() != breakerOnImg) {
+//								devices.get(key).setImgCurr(breakerOnImg);
+//							} else {
+//								jsonObj.put(key, 0);
+//								App.OUT_QUEUE.add(jsonObj);
+//								devices.get(key).setImgCurr(breakerOffImg);
+//							}
+//							break;
+//
+//						case "Switch By Pass":
+//							if (devices.get(key).getImgCurr() != switchByPassOnImg) {
+//								devices.get(key).setImgCurr(switchByPassOnImg);
+//							} else {
+//								out.println(devices.get(key).getCmdOff());
+//								out.flush();
+//								devices.get(key).setImgCurr(switchByPassOffImg);
+//							}
+//							break;
+//
+//						case "Switch PB Permit":
+//							if (devices.get(key).getImgCurr() != switchPBPermitOnImg) {
+//								devices.get(key).setImgCurr(switchPBPermitOnImg);
+//							} else {
+//								out.println(devices.get(key).getCmdOff());
+//								out.flush();
+//								devices.get(key).setImgCurr(switchPBPermitOffImg);
+//							}
+//							break;
+//
+//						case "Switch Yes-No Black":
+//							if (devices.get(key).getImgCurr() != switchYesNoBlackOnImg) {
+//								devices.get(key).setImgCurr(switchYesNoBlackOnImg);
+//							} else {
+//								out.println(devices.get(key).getCmdOff());
+//								out.flush();
+//								devices.get(key).setImgCurr(switchYesNoBlackOffImg);
+//							}
+//							break;
+//
+//						case "Switch PB Square Black":
+//							if (devices.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
+//								devices.get(key).setImgCurr(switchPBSquareBlackOnImg);
+//							} else {
+//								out.println(devices.get(key).getCmdOff());
+//								out.flush();
+//								devices.get(key).setImgCurr(switchPBSquareBlackOffImg);
+//							}
+//							break;
+//
+//						case "Switch Rotary Black":
+//							//Left mouse click. Set lamp off.
+//							if (evt.getButton() == 1) {
+//								devices.get(key).setImgCurr(switchYesNoBlackOffImg);
+//								out.println(devices.get(key).getLampOff());
+//								out.flush();
+//							} else if (evt.getButton() == 3) {
+//								devices.get(key).setImgCurr(switchYesNoBlackOnImg);
+//								out.println(devices.get(key).getLampOn());
+//								out.flush();
+//							}
+//							break;
+//
+//						case "Switch Rotary Yellow":
+//							//Left mouse click. Set lamp off.
+//							if (evt.getButton() == 1) {
+//								devices.get(key).setImgCurr(switchRotaryYellowOffImg);
+//								out.println(devices.get(key).getLampOff());
+//								out.flush();
+//							} else if (evt.getButton() == 3) {
+//								devices.get(key).setImgCurr(switchRotaryYellowOnImg);
+//								out.println(devices.get(key).getLampOn());
+//								out.flush();
+//							}
+//							break;
+//					}
+//				}
+//			}
+//
+//		}
 
     }//GEN-LAST:event_viewPanelMouseClicked
 
