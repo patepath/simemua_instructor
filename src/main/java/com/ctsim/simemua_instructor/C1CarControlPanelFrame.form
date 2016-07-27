@@ -5,7 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="C1-Car Control Panel"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[450, 680]"/>
+      <Dimension value="[411, 680]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -49,6 +49,8 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="viewPanel">
       <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewPanelMousePressed"/>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewPanelMouseReleased"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewPanelMouseClicked"/>
       </Events>
       <AuxValues>

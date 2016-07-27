@@ -49,10 +49,6 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 	private int x = 0;
 	private int y = 0;
 
-	private Socket socket;
-	private PrintWriter out;
-	private BufferedReader in;
-	private String msg = "";
 	private boolean mousePressed;
 
 	private Image aCarControlPanelImg;
@@ -83,7 +79,6 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 	private BufferedImage lampYellowOnImg;
 
 	private JSONObject jsonObj;
-	private JSONParser jsonParser;
 
 	/**
 	 * Creates new form ACarControlPanelFrame
@@ -98,7 +93,6 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 		timer = new Timer(50, this);
 		timer.start();
 
-		//initCommunication();
 		devices = new HashMap<>();
 		createDevices();
 	}
@@ -131,17 +125,6 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 		}
 	}
 
-	private void initCommunication() {
-		try {
-			socket = new Socket("192.168.1.10", 2510);
-			out = new PrintWriter(socket.getOutputStream(), true);
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-		} catch (IOException ex) {
-			Logger.getLogger(ACarControlPanelFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-
 	private void initGraphics() {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -155,7 +138,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 		}
 
 		g2.drawImage(aCarControlPanelImg, null, this);
-		drawDevices();
+		//drawDevices();
 		drawSwitchRotary();
 
 		g2.drawString("(" + x + ", " + y + ")", 10, 10);
@@ -176,9 +159,6 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 		ArrayList<Device> sws = new ArrayList(devices.values());
 
 		sws.stream().forEach((sw) -> {
-			if (sw.getImgCurr() != null) {
-				g2.drawImage(sw.getImgCurr(), sw.getX(), sw.getY(), this);
-			}
 
 			//Check type for some lamp use same picture.
 			switch (sw.getType()) {
@@ -197,6 +177,34 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 						sw.setImgCurr(switchRotaryYellowIdleOffImg);
 					}
 					break;
+
+				case "Switch PB Permit":
+					if (!mousePressed & sw.getImgCurr() != switchPBPermitOffImg) {
+						sw.setImgCurr(switchPBPermitOffImg);
+
+						jsonObj = new JSONObject();
+						JSONObject jsonDevs = new JSONObject();
+						jsonDevs.put(sw.getId(), 0);
+						jsonObj.put("ACAR", jsonDevs);
+						App.OUT_QUEUE.add(jsonObj.toJSONString());
+					}
+					break;
+
+				case "Switch PB Square Black":
+					if (!mousePressed & sw.getImgCurr() != switchPBSquareBlackOffImg) {
+						sw.setImgCurr(switchPBSquareBlackOffImg);
+
+						jsonObj = new JSONObject();
+						JSONObject jsonDevs = new JSONObject();
+						jsonDevs.put(sw.getId(), 0);
+						jsonObj.put("ACAR", jsonDevs);
+						App.OUT_QUEUE.add(jsonObj.toJSONString());
+					}
+					break;
+			}
+
+			if (sw.getImgCurr() != null) {
+				g2.drawImage(sw.getImgCurr(), sw.getX(), sw.getY(), this);
 			}
 
 		});
@@ -414,7 +422,10 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 	private void doClickDev(Device dev, Image imgOn, Image imgOff) {
 		if (dev.getImgCurr() == imgOn) {
 			jsonObj = new JSONObject();
-			jsonObj.put(dev.getId(), 0);
+			JSONObject jsonDevs = new JSONObject();
+			jsonDevs.put(dev.getId(), 0);
+
+			jsonObj.put("ACAR", jsonDevs);
 			App.OUT_QUEUE.add(jsonObj);
 			dev.setImgCurr(imgOff);
 
@@ -423,154 +434,64 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 		}
 	}
 
-
     private void viewPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMouseClicked
-
 		doClickDevice(evt.getX(), evt.getY());
-
-//		x = evt.getX();
-//		y = evt.getY();
-//
-//		Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
-//		while (device.hasNext()) {                                         //loop next to device
-//			String key = (String) (device.next());                         //save key
-//
-//			//x >= current position x and x <= (current position x + width) become area x
-//			if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
-//				&& (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
-//
-//				//Check device type event on clicked.
-//				synchronized (this) {
-//					switch (devices.get(key).getType()) {
-//						case "Main Breaker":
-//							if (devices.get(key).getImgCurr() != mainBreakerOnImg) {
-//								devices.get(key).setImgCurr(mainBreakerOnImg);
-//							} else {
-//								jsonObj = new JSONObject();
-//								jsonObj.put(key, 0);
-//								App.OUT_QUEUE.add(jsonObj);
-//								devices.get(key).setImgCurr(mainBreakerOffImg);
-//							}
-//							break;
-//
-//						case "Breaker":
-//							if (devices.get(key).getImgCurr() != breakerOnImg) {
-//								devices.get(key).setImgCurr(breakerOnImg);
-//							} else {
-//								jsonObj.put(key, 0);
-//								App.OUT_QUEUE.add(jsonObj);
-//								devices.get(key).setImgCurr(breakerOffImg);
-//							}
-//							break;
-//
-//						case "Switch By Pass":
-//							if (devices.get(key).getImgCurr() != switchByPassOnImg) {
-//								devices.get(key).setImgCurr(switchByPassOnImg);
-//							} else {
-//								out.println(devices.get(key).getCmdOff());
-//								out.flush();
-//								devices.get(key).setImgCurr(switchByPassOffImg);
-//							}
-//							break;
-//
-//						case "Switch PB Permit":
-//							if (devices.get(key).getImgCurr() != switchPBPermitOnImg) {
-//								devices.get(key).setImgCurr(switchPBPermitOnImg);
-//							} else {
-//								out.println(devices.get(key).getCmdOff());
-//								out.flush();
-//								devices.get(key).setImgCurr(switchPBPermitOffImg);
-//							}
-//							break;
-//
-//						case "Switch Yes-No Black":
-//							if (devices.get(key).getImgCurr() != switchYesNoBlackOnImg) {
-//								devices.get(key).setImgCurr(switchYesNoBlackOnImg);
-//							} else {
-//								out.println(devices.get(key).getCmdOff());
-//								out.flush();
-//								devices.get(key).setImgCurr(switchYesNoBlackOffImg);
-//							}
-//							break;
-//
-//						case "Switch PB Square Black":
-//							if (devices.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
-//								devices.get(key).setImgCurr(switchPBSquareBlackOnImg);
-//							} else {
-//								out.println(devices.get(key).getCmdOff());
-//								out.flush();
-//								devices.get(key).setImgCurr(switchPBSquareBlackOffImg);
-//							}
-//							break;
-//
-//						case "Switch Rotary Black":
-//							//Left mouse click. Set lamp off.
-//							if (evt.getButton() == 1) {
-//								devices.get(key).setImgCurr(switchYesNoBlackOffImg);
-//								out.println(devices.get(key).getLampOff());
-//								out.flush();
-//							} else if (evt.getButton() == 3) {
-//								devices.get(key).setImgCurr(switchYesNoBlackOnImg);
-//								out.println(devices.get(key).getLampOn());
-//								out.flush();
-//							}
-//							break;
-//
-//						case "Switch Rotary Yellow":
-//							//Left mouse click. Set lamp off.
-//							if (evt.getButton() == 1) {
-//								devices.get(key).setImgCurr(switchRotaryYellowOffImg);
-//								out.println(devices.get(key).getLampOff());
-//								out.flush();
-//							} else if (evt.getButton() == 3) {
-//								devices.get(key).setImgCurr(switchRotaryYellowOnImg);
-//								out.println(devices.get(key).getLampOn());
-//								out.flush();
-//							}
-//							break;
-//					}
-//				}
-//			}
-//
-//		}
-
     }//GEN-LAST:event_viewPanelMouseClicked
 
+	private void doRotarySwitchPress(int mouseButton, Device dev, Image imgOn, Image imgOff) {
+		jsonObj = new JSONObject();
+		JSONObject jsonDevs = new JSONObject();
+
+		if (mouseButton == 1) {
+			dev.setImgCurr(imgOff);
+			jsonDevs.put(dev.getId(), 0);
+			jsonObj.put("ACAR", jsonDevs);
+			App.OUT_QUEUE.add(jsonObj.toJSONString());
+
+		} else if (mouseButton == 3) {
+			dev.setImgCurr(imgOn);
+			jsonDevs.put(dev.getId(), 1);
+			jsonObj.put("ACAR", jsonDevs);
+			App.OUT_QUEUE.add(jsonObj.toJSONString());
+		}
+	}
+
+	private void doPBSwitchPress(Device dev, Image imgOn) {
+		jsonObj = new JSONObject();
+		JSONObject jsonDevs = new JSONObject();
+
+		dev.setImgCurr(imgOn);
+		jsonDevs.put(dev.getId(), 1);
+		jsonObj.put("ACAR", jsonDevs);
+		App.OUT_QUEUE.add(jsonObj.toJSONString());
+	}
+
     private void viewPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMousePressed
+		Device dev;
+
 		try {
-			Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
-			while (device.hasNext()) {                                         //loop next to device
-				String key = (String) (device.next());                         //save key
+			Iterator<Device> devs = devices.values().iterator();				//save data devices to iterator.
+			while (devs.hasNext()) {                                         //loop next to device
+				dev = (Device) (devs.next());                         //save key
 
 				//x >= current position x and x <= (current position x + width) become area x
-				if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
-					&& (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
+				if ((x >= dev.getX() & x <= (dev.getX() + dev.getWidth())) & (y >= dev.getY() & y <= (dev.getY() + dev.getHeight()))) {
 
 					mousePressed = true;
 					//Check device type event on clicked. If type equal Switch Rotary Black.
-					if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Black")) {
-						if (evt.getButton() == 1) {
-							devices.get(key).setImgCurr(switchYesNoBlackOffImg);
-							out.println(devices.get(key).getLampOff());
-							out.flush();
-						} else if (evt.getButton() == 3) {
-							devices.get(key).setImgCurr(switchYesNoBlackOnImg);
-							out.println(devices.get(key).getLampOn());
-							out.flush();
-						}
-					} else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
-						if (evt.getButton() == 1) {
-							devices.get(key).setImgCurr(switchRotaryYellowOffImg);
-							out.println(devices.get(key).getLampOff());
-							out.flush();
-						} else if (evt.getButton() == 3) {
-							devices.get(key).setImgCurr(switchRotaryYellowOnImg);
-							out.println(devices.get(key).getLampOn());
-							out.flush();
-						}
+					if (dev.getType().equalsIgnoreCase("Switch Rotary Black")) {
+						doRotarySwitchPress(evt.getButton(), dev, switchYesNoBlackOnImg, switchYesNoBlackOffImg);
+
+					} else if (dev.getType().equalsIgnoreCase("Switch Rotary Yellow")) {
+						doRotarySwitchPress(evt.getButton(), dev, switchRotaryYellowOnImg, switchRotaryYellowOffImg);
+
+					} else if (dev.getType().equalsIgnoreCase("Switch PB Permit")) {
+						doPBSwitchPress(dev, switchPBPermitOnImg);
+
+					} else if (dev.getType().equalsIgnoreCase("Switch PB Square Black")) {
+						doPBSwitchPress(dev, switchPBSquareBlackOnImg);
 					}
 				}
-
 			}
 		} catch (Exception ex) {
 			Logger.getLogger(DriverDeskFrame.class.getName()).log(Level.SEVERE, null, ex);
