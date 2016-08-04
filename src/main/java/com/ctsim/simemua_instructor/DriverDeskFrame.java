@@ -27,9 +27,12 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -48,12 +51,11 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     private PrintWriter out;
     private BufferedReader in;
     private String msg = "";
-    
+
     private final Map<String, Device> devices;
-    
+
     private boolean mousePressed;
-    
-    
+
     //Switch yes-no.
     private BufferedImage switchYesNoBlackOnImg;
     private BufferedImage switchYesNoBlackOffImg;
@@ -82,7 +84,6 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     private BufferedImage switchRotaryYellowIdleOffImg;
     private BufferedImage switchRotaryYellowOnImg;
     private BufferedImage switchRotaryYellowOffImg;
-    
 
     /**
      * Creates new form DriverDeskFrame
@@ -90,17 +91,17 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     public DriverDeskFrame() {
         initComponents();
         super.setLocation(1000, 500);
-        
+
         //initStatus.
         mousePressed = false;
-        
+
         initImage();
-        
+
         timer = new Timer(100, this);
         timer.start();
 
         devices = new HashMap<>();
-        initCommunication();
+        //initCommunication();
         createDevices();
     }
 
@@ -114,39 +115,39 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
             Logger.getLogger(ACarControlPanelFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void initImage() {
         try {
-            imgDriverDesk = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/layout_driver_desk.png").getFile())); 
-            
+            imgDriverDesk = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/layout_driver_desk.png").getFile()));
+
             switchYesNoBlackOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_yes-no_black_on.png").getFile()));
             switchYesNoBlackOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_yes-no_black_off.png").getFile()));
-            
+
             switchPBSquareRedOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_red_on.png").getFile()));
             switchPBSquareRedOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_red_off.png").getFile()));
-            
+
             switchPBSquareBlackOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_black_on.png").getFile()));
             switchPBSquareBlackOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_black_off.png").getFile()));
-            
+
             switchPBSquareGreenOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_green_on.png").getFile()));
             switchPBSquareGreenOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_green_off.png").getFile()));
-            
+
             switchPBSquareYellowOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_yellow_on.png").getFile()));
             switchPBSquareYellowOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_square_yellow_off.png").getFile()));
-            
+
             switchPBPermitOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_permit_on.png").getFile()));
             switchPBPermitOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_pb_permit_off.png").getFile()));
-            
+
             switchRotaryRedIdleOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_red_idle_on.png").getFile()));
             switchRotaryRedIdleOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_red_idle_off.png").getFile()));
             switchRotaryRedOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_red_on.png").getFile()));
             switchRotaryRedOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_red_off.png").getFile()));
-            
+
             switchRotaryYellowIdleOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_yellow_idle_on.png").getFile()));
             switchRotaryYellowIdleOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_yellow_idle_off.png").getFile()));
             switchRotaryYellowOnImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_yellow_on.png").getFile()));
             switchRotaryYellowOffImg = ImageIO.read(new File(this.getClass().getClassLoader().getResource("img/switch_rotary_yellow_off.png").getFile()));
-            
+
         } catch (IOException ex) {
             Logger.getLogger(ACarControlPanelFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -165,51 +166,51 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
 
         g2.drawImage(imgDriverDesk, null, this);
         g2.drawString("(" + x + ", " + y + ")", 15, 15);
-        
+
         drawDevices();
-        
+
         drawSwitchRotary();
     }
-    
+
     private void drawDevices() {
         ArrayList<Device> devs = new ArrayList(devices.values());
-        
+
         devs.stream().forEach((dev) -> {
-            if(dev.getImgCurr() != null) {
+            if (dev.getImgCurr() != null) {
                 g2.drawImage(dev.getImgCurr(), dev.getX(), dev.getY(), this);
             }
         });
     }
-    
+
     private void drawSwitchRotary() {
         ArrayList<Device> sws = new ArrayList(devices.values());
-        
+
         sws.stream().forEach((sw) -> {
-            if(sw.getImgCurr() != null) {
+            if (sw.getImgCurr() != null) {
                 g2.drawImage(sw.getImgCurr(), sw.getX(), sw.getY(), this);
             }
-            
+
             //Check type for some lamp use same picture.
-            switch(sw.getType()) {
+            switch (sw.getType()) {
                 case "Switch Rotary Red":
-                    if(sw.getImgCurr() == switchRotaryRedOnImg && !mousePressed) {
+                    if (sw.getImgCurr() == switchRotaryRedOnImg && !mousePressed) {
                         sw.setImgCurr(switchRotaryRedIdleOnImg);
-                    }else if(sw.getImgCurr() == switchRotaryRedOffImg && !mousePressed) {
+                    } else if (sw.getImgCurr() == switchRotaryRedOffImg && !mousePressed) {
                         sw.setImgCurr(switchRotaryRedIdleOffImg);
                     }
                     break;
                 case "Switch Rotary Yellow":
-                    if(sw.getImgCurr() == switchRotaryYellowOnImg && !mousePressed) {
+                    if (sw.getImgCurr() == switchRotaryYellowOnImg && !mousePressed) {
                         sw.setImgCurr(switchRotaryYellowIdleOnImg);
-                    }else if(sw.getImgCurr() == switchRotaryYellowOffImg && !mousePressed) {
+                    } else if (sw.getImgCurr() == switchRotaryYellowOffImg && !mousePressed) {
                         sw.setImgCurr(switchRotaryYellowIdleOffImg);
                     }
                     break;
             }
-               
+
         });
     }
-    
+
     private void createDevices() {
         File fXmlFile;
         DocumentBuilderFactory dbFactory;
@@ -217,7 +218,7 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
         Document doc;
         NodeList nodeList;
         Element element;
-        
+
         try {
             fXmlFile = new File(this.getClass().getClassLoader().getResource("config/driver_desk.xml").getFile());
             dbFactory = DocumentBuilderFactory.newInstance();
@@ -225,14 +226,14 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
             doc = dBuilder.parse(fXmlFile);
             doc.getDocumentElement().normalize();
             nodeList = doc.getElementsByTagName("device");
-            
-            for(int i=0 ; i < nodeList.getLength(); i++) {
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
                 element = (Element) nodeList.item(i);
                 devices.put(element.getAttribute("id"), new Device());
                 devices.get(element.getAttribute("id")).setName(element.getElementsByTagName("name").item(0).getTextContent());
                 devices.get(element.getAttribute("id")).setType(element.getElementsByTagName("type").item(0).getTextContent());
-                
-                switch(element.getElementsByTagName("type").item(0).getTextContent()) {
+
+                switch (element.getElementsByTagName("type").item(0).getTextContent()) {
                     case "Switch Yes-No Black":
                         initImageDev(element, switchYesNoBlackOnImg, switchYesNoBlackOffImg, switchYesNoBlackOffImg);
                         break;
@@ -261,62 +262,62 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
                         initImageDev(element, switchPBPermitOnImg, switchPBPermitOffImg, switchPBPermitOffImg);
                         break;
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setX(Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent()));
-                } catch (Exception e) {
+                } catch (DOMException | NumberFormatException e) {
                     devices.get(element.getAttribute("id")).setX(0);
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setY(Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent()));
-                } catch (Exception e) {
+                } catch (DOMException | NumberFormatException e) {
                     devices.get(element.getAttribute("id")).setY(0);
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setWidth(Integer.parseInt(element.getElementsByTagName("width").item(0).getTextContent()));
-                } catch (Exception e) {
+                } catch (DOMException | NumberFormatException e) {
                     devices.get(element.getAttribute("id")).setWidth(0);
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setHeight(Integer.parseInt(element.getElementsByTagName("height").item(0).getTextContent()));
-                } catch (Exception e) {
+                } catch (DOMException | NumberFormatException e) {
                     devices.get(element.getAttribute("id")).setHeight(0);
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setCmdOff(element.getElementsByTagName("cmdoff").item(0).getTextContent());
                 } catch (Exception e) {
                     devices.get(element.getAttribute("id")).setCmdOff("");
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setCmdOn(element.getElementsByTagName("cmdon").item(0).getTextContent());
                 } catch (Exception e) {
                     devices.get(element.getAttribute("id")).setCmdOn("");
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setLampOn(element.getElementsByTagName("lampon").item(0).getTextContent());
                 } catch (Exception e) {
                     devices.get(element.getAttribute("id")).setLampOn("");
                 }
-                
+
                 try {
                     devices.get(element.getAttribute("id")).setLampOff(element.getElementsByTagName("lampoff").item(0).getTextContent());
                 } catch (Exception e) {
                     devices.get(element.getAttribute("id")).setLampOff("");
                 }
-                
+
             }
-        } catch (Exception ex) {
+        } catch (ParserConfigurationException | SAXException | IOException | DOMException ex) {
             Logger.getLogger(DriverDeskFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     public void initImageDev(Element element, Image imgOn, Image imgOff, Image imgCurr) {
         devices.get(element.getAttribute("id")).setImgOn(imgOn);
         devices.get(element.getAttribute("id")).setImgOff(imgOff);
@@ -388,106 +389,106 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     private void viewPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMouseClicked
         x = evt.getX();
         y = evt.getY();
-        
+
         try {
             Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
-            while(device.hasNext()) {                                         //loop next to device
-                String key = (String)(device.next());                         //save key
+            while (device.hasNext()) {                                         //loop next to device
+                String key = (String) (device.next());                         //save key
 
                 //x >= current position x and x <= (current position x + width) become area x
-                if((x >= devices.get(key).getX() && x <=  (devices.get(key).getX() + devices.get(key).getWidth())) 
+                if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
                         && (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
 
                     //Check device type event on clicked. If type equal Switch Yes-No Black.
-                    if(devices.get(key).getType().equalsIgnoreCase("Switch Yes-No Black")) {
-                        if(devices.get(key).getImgCurr() != switchYesNoBlackOnImg) {         //Check image is show not equal breaker On.
+                    if (devices.get(key).getType().equalsIgnoreCase("Switch Yes-No Black")) {
+                        if (devices.get(key).getImgCurr() != switchYesNoBlackOnImg) {         //Check image is show not equal breaker On.
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchYesNoBlackOnImg);              //Set image breaker On.
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchYesNoBlackOffImg);
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch Yes-No Yellow")) {
-                        if(devices.get(key).getImgCurr() != switchRotaryYellowOnImg) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Yes-No Yellow")) {
+                        if (devices.get(key).getImgCurr() != switchRotaryYellowOnImg) {
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchRotaryYellowOnImg);
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchRotaryYellowOffImg);
 
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch PB Square Black")) {
-                        if(devices.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Black")) {
+                        if (devices.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareBlackOnImg);
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareBlackOffImg);
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch PB Square Red")) {
-                        if(devices.get(key).getImgCurr() != switchPBSquareRedOnImg) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Red")) {
+                        if (devices.get(key).getImgCurr() != switchPBSquareRedOnImg) {
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareRedOnImg);
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareRedOffImg);
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch PB Square Green")) {
-                        if(devices.get(key).getImgCurr() != switchPBSquareGreenOnImg) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Green")) {
+                        if (devices.get(key).getImgCurr() != switchPBSquareGreenOnImg) {
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareGreenOnImg);
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareGreenOffImg);
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch PB Square Yellow")) {
-                        if(devices.get(key).getImgCurr() != switchPBSquareYellowOnImg) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Yellow")) {
+                        if (devices.get(key).getImgCurr() != switchPBSquareYellowOnImg) {
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareYellowOnImg);
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBSquareYellowOffImg);
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
                         //Left mouse click. Set lamp off.
-                        if(evt.getButton() == 1) {
+                        if (evt.getButton() == 1) {
                             devices.get(key).setImgCurr(switchRotaryRedOffImg);
                             out.println(devices.get(key).getLampOff());
                             out.flush();
-                        }else if(evt.getButton() == 3) {
+                        } else if (evt.getButton() == 3) {
                             devices.get(key).setImgCurr(switchRotaryRedOnImg);
                             out.println(devices.get(key).getLampOn());
-                            out.flush();  
+                            out.flush();
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
                         //Left mouse click. Set lamp off.
-                        if(evt.getButton() == 1) {
+                        if (evt.getButton() == 1) {
                             devices.get(key).setImgCurr(switchRotaryYellowOffImg);
                             out.println(devices.get(key).getLampOff());
                             out.flush();
-                        }else if(evt.getButton() == 3) {
+                        } else if (evt.getButton() == 3) {
                             devices.get(key).setImgCurr(switchRotaryYellowOnImg);
                             out.println(devices.get(key).getLampOn());
-                            out.flush();  
+                            out.flush();
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch PB Permit")) {
-                        if(devices.get(key).getImgCurr() != switchPBPermitOnImg) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Permit")) {
+                        if (devices.get(key).getImgCurr() != switchPBPermitOnImg) {
                             out.println(devices.get(key).getLampOn());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBPermitOnImg);
-                        }else {
+                        } else {
                             out.println(devices.get(key).getLampOff());
                             out.flush();
                             devices.get(key).setImgCurr(switchPBPermitOffImg);
@@ -499,41 +500,41 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
         } catch (Exception ex) {
             Logger.getLogger(DriverDeskFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //System.out.println("x : " + x + " y : " + y);
     }//GEN-LAST:event_viewPanelMouseClicked
 
     private void viewPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMousePressed
         try {
             Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
-            while(device.hasNext()) {                                         //loop next to device
-                String key = (String)(device.next());                         //save key
+            while (device.hasNext()) {                                         //loop next to device
+                String key = (String) (device.next());                         //save key
 
                 //x >= current position x and x <= (current position x + width) become area x
-                if((x >= devices.get(key).getX() && x <=  (devices.get(key).getX() + devices.get(key).getWidth())) 
+                if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
                         && (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
-                    
+
                     mousePressed = true;
                     //Check device type event on clicked. If type equal Switch Rotary Red
-                    if(devices.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
-                        if(evt.getButton() == 1) {
+                    if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
+                        if (evt.getButton() == 1) {
                             devices.get(key).setImgCurr(switchRotaryRedOffImg);
                             out.println(devices.get(key).getLampOff());
                             out.flush();
-                        }else if(evt.getButton() == 3) {
+                        } else if (evt.getButton() == 3) {
                             devices.get(key).setImgCurr(switchRotaryRedOnImg);
                             out.println(devices.get(key).getLampOn());
-                            out.flush();  
+                            out.flush();
                         }
-                    }else if(devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
-                        if(evt.getButton() == 1) {
+                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
+                        if (evt.getButton() == 1) {
                             devices.get(key).setImgCurr(switchRotaryYellowOffImg);
                             out.println(devices.get(key).getLampOff());
                             out.flush();
-                        }else if(evt.getButton() == 3) {
+                        } else if (evt.getButton() == 3) {
                             devices.get(key).setImgCurr(switchRotaryYellowOnImg);
                             out.println(devices.get(key).getLampOn());
-                            out.flush();  
+                            out.flush();
                         }
                     }
                 }
@@ -564,15 +565,11 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DriverDeskFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DriverDeskFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DriverDeskFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DriverDeskFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */

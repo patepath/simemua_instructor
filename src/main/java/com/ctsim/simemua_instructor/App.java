@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
@@ -25,116 +26,122 @@ import org.json.simple.parser.ParseException;
  */
 public class App {
 
-	public static final BlockingQueue OUT_QUEUE = new LinkedBlockingQueue<>();
-	private Socket socket;
-	private PrintWriter out;
-	private BufferedReader in;
+    public static final BlockingQueue OUT_QUEUE = new LinkedBlockingQueue<>();
+    private Socket socket;
+    private PrintWriter out;
+    private BufferedReader in;
 
-	private JSONObject jsonObj;
-	private JSONParser jsonParser;
+    private Calendar watchdogStart;
 
-	private Calendar watchdogStart;
+    public App() {
+        initCommunication();
+    }
 
-	public App() {
+    public void run() {
+        while (true) {
+            if (socket == null) {
+                initCommunication();
 
-	}
+            } else {
+                try {
+                    if (socket.getInputStream().available() > 0) {
+                        receiveMessage();
+                    } else {
+                        sendMessage();
+                    }
+                } catch (IOException | ParseException ex) {
+                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-	public void run() {
-		String msg;
-		jsonParser = new JSONParser();
+                if (Calendar.getInstance().getTimeInMillis() - watchdogStart.getTimeInMillis() > 5000) {
+                    socket = null;
+                    System.out.println("connection fail.");
+                }
+            }
 
-		while (true) {
+        }
+    }
 
-			if (socket != null) {
+    private void receiveMessage() throws IOException, ParseException {
+        String msg = in.readLine();
+        JSONParser jsonParser = new JSONParser();
+        JSONObject json = (JSONObject) jsonParser.parse(msg);
 
-				try {
+        Iterator<String> keys = json.keySet().iterator();
+        String key;
+        Device dev;
 
-					if (socket.getInputStream().available() > 0) {
-						msg = in.readLine();
+        while (keys.hasNext()) {
+            key = keys.next();
 
-						try {
-							jsonObj = (JSONObject) jsonParser.parse(msg);
+            if (key.toUpperCase().equals("WATCHDOG")) {
+                watchdogStart = Calendar.getInstance();
 
-							if ((long) jsonObj.get("watchdog") == 1) {	// reset watchdog.
-								watchdogStart = Calendar.getInstance();
-							}
+            } else if (key.startsWith("A")) {
+                dev = ACarControlPanelFrame.DEVS.get(key);
+                System.out.println(key);
 
-						} catch (ParseException ex) {
-							Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-						}
+                if ((long) json.get(key) == 1) {
+                    dev.setImgCurr(dev.getImgOn());
+                } else if (key.startsWith("A") & (long) json.get(key) == 0) {
+                    dev.setImgCurr(dev.getImgOff());
+                }
+            }
+        }
 
-					} else {
-						jsonObj = new JSONObject();
+    }
 
-						if (!OUT_QUEUE.isEmpty()) {
-							jsonObj = new JSONObject();
+    private void sendMessage() {
+        while (!OUT_QUEUE.isEmpty()) {
+            out.println(OUT_QUEUE.poll());
 
-							synchronized (this) {
-								while (!OUT_QUEUE.isEmpty()) {
-									out.println(OUT_QUEUE.poll());
-									out.flush();
+            if (out.checkError()) {
+                socket = null;
+            }
+        }
+    }
 
-									if (out.checkError()) {
-										socket.close();
-									} else {
-										System.out.println(jsonObj.toJSONString());
-									}
-								}
+    private void initCommunication() {
+        try {
+            System.out.println("try to connecting.");
+            socket = new Socket("192.168.1.10", 2510);
 
-							}
-						}
+            if (socket.isConnected()) {
+                System.out.println("Conneted.");
+                out = new PrintWriter(socket.getOutputStream(), true);
+                out.println("SESSIONID=INSTRUCTOR");
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                watchdogStart = Calendar.getInstance();
+            }
 
-						if (Calendar.getInstance().getTimeInMillis() - watchdogStart.getTimeInMillis() > 5000) {
-							System.out.println("Server disconnected.");
-							socket = null;
-						}
-					}
+        } catch (NullPointerException | IOException ex) {
+            System.out.println("connection fail.");
+        }
+    }
 
-				} catch (NullPointerException | IOException ex) {
+    public static void main(String[] argc) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ACarControlPanelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 
-				}
+        java.awt.EventQueue.invokeLater(() -> {
+            new ACarControlPanelFrame().setVisible(true);
+            new CCarControlPanelFrame().setVisible(true);
+            new C1CarControlPanelFrame().setVisible(true);
+            new DriverDeskFrame().setVisible(true);
+            new FaultGenerateFrame().setVisible(true);
+            new VideoControlFrame().setVisible(true);
+        });
 
-			} else {
-				try {
-					System.out.println("try to connecting.");
-					socket = new Socket("localhost", 2510);
+        App app = new App();
+        app.run();
+    }
 
-					if (socket.isConnected()) {
-						System.out.println("Conneted.");
-						out = new PrintWriter(socket.getOutputStream(), true);
-						out.println("SESSIONID=INSTRUCTOR");
-						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-						watchdogStart = Calendar.getInstance();
-					}
-
-				} catch (NullPointerException | IOException ex) {
-					System.out.println("connection fail.");
-				}
-			}
-		}
-	}
-
-	public static void main(String[] argc) {
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ACarControlPanelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-
-		java.awt.EventQueue.invokeLater(() -> {
-			new ACarControlPanelFrame().setVisible(true);
-			new CCarControlPanelFrame().setVisible(true);
-			new C1CarControlPanelFrame().setVisible(true);
-//			new DriverDeskFrame().setVisible(true);
-//			new FaultGenerateFrame().setVisible(true);
-		});
-
-		App app = new App();
-		app.run();
-	}
 }
