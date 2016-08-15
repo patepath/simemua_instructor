@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stations>
+    
+    <station id="DEPOT-STOP">
+        <name></name>
+        <url>./clips/Depot-StopDirect.mp4</url>
+    </station>
+    
+    <station id="STOP-N8">
+        <name></name>
+        <url>./clips/StopDirect-N8.mp4</url>
+    </station>
+    
+    <station id="N8-N7">
+        <name></name>
+        <url>./clips/N8-N7.mp4</url>
+    </station>
+    
+    <station id="N7-N5">
+        <name></name>
+        <url>./clips/N7-N5.mp4</url>
+    </station>
+    
+    <station id="N5-N4">
+        <name></name>
+        <url>./clips/N5-N4.mp4</url>
+    </station>
+    
+    <station id="N4-N3">
+        <name></name>
+        <url>./clips/N4-N3.mp4</url>
+    </station>
+    
+    <station id="N3-N2">
+        <name></name>
+        <url>./clips/N3-N2.mp4</url>
+    </station>
+    
+    <station id="N2-N1">
+        <name></name>
+        <url>./clips/N2-N1.mp4</url>
+    </station>
+    
+    <station id="N1-SIAM">
+        <name></name>
+        <url>./clips/N1-SIAM.mp4</url>
+    </station>
+    
+    <station id="SIAM-S1">
+        <name></name>
+        <url>./clips/SIAM-S1.mp4</url>
+    </station>
+    
+    <station id="S1-S2">
+        <name></name>
+        <url>./clips/S1-S2.mp4</url>
+    </station>
+    
+    <station id="S2-S3">
+        <name></name>
+        <url>./clips/S2-S3.mp4</url>
+    </station>
+    
+    <station id="S3-S5">
+        <name></name>
+        <url>./clips/S3-S5.mp4</url>
+    </station>
+    
+    <station id="S5-S6">
+        <name></name>
+        <url>./clips/S5-S6.mp4</url>
+    </station>
+    
+    <station id="S6-S7">
+        <name></name>
+        <url>./clips/S6-S7.mp4</url>
+    </station>
+    
+    <station id="S7-S8">
+        <name></name>
+        <url>./clips/S7-S8.mp4</url>
+    </station>
+    
+    <station id="S8-S9">
+        <name></name>
+        <url>./clips/S8-S9.mp4</url>
+    </station>
+    
+    <station id="S9-S10">
+        <name></name>
+        <url>./clips/S9-S10.mp4</url>
+    </station>
+    
+    <station id="S10-S11">
+        <name></name>
+        <url>./clips/S10-S11.mp4</url>
+    </station>
+    
+    <station id="S11-S12">
+        <name></name>
+        <url>./clips/S11-S12.mp4</url>
+    </station>
+    
+    <station id="S12-S11">
+        <name></name>
+        <url>./clips/S12-S11.mp4</url>
+    </station>
+    
+    <station id="S11-S10">
+        <name></name>
+        <url>./clips/S11-S10.mp4</url>
+    </station>
+    
+    <station id="S10-S9">
+        <name></name>
+        <url>./clips/S10-S9.mp4</url>
+    </station>
+    
+    <station id="S9-S8">
+        <name></name>
+        <url>./clips/S9-S8.mp4</url>
+    </station>
+    
+    <station id="S8-S7">
+        <name></name>
+        <url>./clips/S8-S7.mp4</url>
+    </station>
+    
+    <station id="S7-S6">
+        <name></name>
+        <url>./clips/S7-S6.mp4</url>
+    </station>
+    
+    <station id="S6-S5">
+        <name></name>
+        <url>./clips/S6-S5.mp4</url>
+    </station>
+    
+    <station id="S5-S3">
+        <name></name>
+        <url>./clips/S5-S3.mp4</url>
+    </station>
+    
+    <station id="S3-S2">
+        <name></name>
+        <url>./clips/S3-S2.mp4</url>
+    </station>
+    
+    <station id="S2-S1">
+        <name></name>
+        <url>./clips/S2-S1.mp4</url>
+    </station>
+    
+    <station id="S1-SIAM">
+        <name></name>
+        <url>./clips/S1-SIAM.mp4</url>
+    </station>
+    
+    <station id="SIAM-N1">
+        <name></name>
+        <url>./clips/SIAM-N1.mp4</url>
+    </station>
+    
+    <station id="N1-N2">
+        <name></name>
+        <url>./clips/N1-N2.mp4</url>
+    </station>
+    
+    <station id="N2-N3">
+        <name></name>
+        <url>./clips/N2-N3.mp4</url>
+    </station>
+    
+    <station id="N3-N4">
+        <name></name>
+        <url>./clips/N3-N4.mp4</url>
+    </station>
+    
+    <station id="N4-N5">
+        <name></name>
+        <url>./clips/N4-N5.mp4</url>
+    </station>
+    
+    <station id="N5-N7">
+        <name></name>
+        <url>./clips/N5-N7.mp4</url>
+    </station>
+    
+    <station id="N7-N8">
+        <name></name>
+        <url>./clips/N7-N8.mp4</url>
+    </station>
+    
+    <station id="N8-STOP">
+        <name></name>
+        <url>./clips/N8-StopDirect.mp4</url>
+    </station>
+    
+    <station id="STOP-DEPOT">
+        <name></name>
+        <url>./clips/StopDirect-Depot.mp4</url>
+    </station>
+    
+</stations>

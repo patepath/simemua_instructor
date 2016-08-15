@@ -57,7 +57,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
     private Image switchByPassOnImg;
     private Image switchByPassOffImg;
 
-    public static final Map<String, Device> DEVS  = new HashMap<>();
+    public static final Map<String, Device> DEVS = new HashMap<>();
 
     private BufferedImage switchPBPermitOnImg;
     private BufferedImage switchPBPermitOffImg;
@@ -90,7 +90,6 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
         timer = new Timer(50, this);
         timer.start();
 
-        
         createDevices();
     }
 
@@ -227,6 +226,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 element = (Element) nodeList.item(i);
+
                 DEVS.put(element.getAttribute("id"), new Device());
                 DEVS.get(element.getAttribute("id")).setId(element.getAttribute("id"));
                 DEVS.get(element.getAttribute("id")).setName(element.getElementsByTagName("name").item(0).getTextContent());
@@ -266,11 +266,11 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
                         break;
 
                     case "Lamp Red":
-                        initImageDev(element, lampRedOnImg, lampRedOnImg, lampRedOffImg);
+                        initImageDev(element, lampRedOnImg, lampRedOffImg, lampRedOffImg);
                         break;
 
                     case "Lamp Yellow":
-                        initImageDev(element, lampYellowOnImg, lampYellowOnImg, lampYellowOffImg);
+                        initImageDev(element, lampYellowOnImg, lampYellowOffImg, lampYellowOffImg);
                         break;
                 }
 
@@ -404,6 +404,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
         while (devs.hasNext()) {
             dev = devs.next();
             if ((x >= dev.getX() & x <= dev.getX() + dev.getWidth()) & (y >= dev.getY() & y <= dev.getY() + dev.getHeight())) {
+
                 switch (dev.getType()) {
 
                     case "Main Breaker":
@@ -413,6 +414,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
                     case "Breaker":
                         doClickDev(dev, breakerOnImg, breakerOffImg);
                         break;
+
                 }
             }
         }
@@ -427,7 +429,7 @@ public class ACarControlPanelFrame extends javax.swing.JFrame implements ActionL
             jsonObj.put("ACAR", jsonDevs);
             App.OUT_QUEUE.add(jsonObj);
             dev.setImgCurr(imgOff);
-        } 
+        }
     }
 
     private void viewPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMouseClicked

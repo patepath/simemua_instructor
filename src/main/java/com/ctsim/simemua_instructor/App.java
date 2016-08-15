@@ -66,27 +66,82 @@ public class App {
         String msg = in.readLine();
         JSONParser jsonParser = new JSONParser();
         JSONObject json = (JSONObject) jsonParser.parse(msg);
+        JSONObject jsonDev;
 
         Iterator<String> keys = json.keySet().iterator();
         String key;
         Device dev;
 
+        boolean isUpdated;
+
         while (keys.hasNext()) {
             key = keys.next();
 
-            if (key.toUpperCase().equals("WATCHDOG")) {
-                watchdogStart = Calendar.getInstance();
+            switch (key.toUpperCase()) {
+                case "WATCHDOG":
+                    watchdogStart = Calendar.getInstance();
+                    break;
 
-            } else if (key.startsWith("A")) {
-                dev = ACarControlPanelFrame.DEVS.get(key);
-                System.out.println(key);
+                case "ACAR":
+                    jsonDev = (JSONObject) json.get(key);
+                    keys = jsonDev.keySet().iterator();
 
-                if ((long) json.get(key) == 1) {
-                    dev.setImgCurr(dev.getImgOn());
-                } else if (key.startsWith("A") & (long) json.get(key) == 0) {
-                    dev.setImgCurr(dev.getImgOff());
-                }
+                    while (keys.hasNext()) {
+                        key = keys.next();
+
+                        dev = ACarControlPanelFrame.DEVS.get(key);
+
+                        try {
+                            if ((long) jsonDev.get(key) == 1) {
+                                dev.setImgCurr(dev.getImgOn());
+                                isUpdated = true;
+
+                            } else if ((long) jsonDev.get(key) == 0) {
+                                dev.setImgCurr(dev.getImgOff());
+                                isUpdated = true;
+                            }
+
+                        } catch (Exception ex) {
+                            System.out.println("update fail.");
+                        }
+
+                    }
+
+                    break;
+
+                case "CCAR":
+                    break;
+
+                case "C1CAR":
+                    break;
+
+                case "DRIVERDESK":
+                    jsonDev = (JSONObject) json.get(key);
+                    keys = jsonDev.keySet().iterator();
+
+                    while (keys.hasNext()) {
+                        key = keys.next();
+
+                        dev = DriverDeskFrame.DEVS.get(key);
+
+                        try {
+                            if ((long) jsonDev.get(key) == 1) {
+                                dev.setImgCurr(dev.getImgOn());
+                                isUpdated = true;
+
+                            } else if ((long) jsonDev.get(key) == 0) {
+                                dev.setImgCurr(dev.getImgOff());
+                                isUpdated = true;
+                            }
+
+                        } catch (Exception ex) {
+                            System.out.println("update fail.");
+                        }
+
+                    }
+                    break;
             }
+
         }
 
     }
@@ -125,10 +180,12 @@ public class App {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ACarControlPanelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ACarControlPanelFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(() -> {
@@ -139,6 +196,12 @@ public class App {
             new FaultGenerateFrame().setVisible(true);
             new VideoControlFrame().setVisible(true);
         });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         App app = new App();
         app.run();

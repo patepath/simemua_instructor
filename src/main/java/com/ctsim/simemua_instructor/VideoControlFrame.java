@@ -5,8 +5,18 @@
  */
 package com.ctsim.simemua_instructor;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -19,6 +29,36 @@ public class VideoControlFrame extends javax.swing.JFrame {
      */
     public VideoControlFrame() {
         initComponents();
+        initStations();
+    }
+
+    private void initStations() {
+        comboStations.removeAllItems();
+
+        File fXmlFile;
+        DocumentBuilderFactory dbFactory;
+        DocumentBuilder dBuilder;
+        Document doc;
+        NodeList nodeList;
+        Element element;
+
+        try {
+            fXmlFile = new File(this.getClass().getClassLoader().getResource("config/stations.xml").getFile());
+            dbFactory = DocumentBuilderFactory.newInstance();
+            dBuilder = dbFactory.newDocumentBuilder();
+            doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
+            nodeList = doc.getElementsByTagName("station");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                element = (Element) nodeList.item(i);
+
+                comboStations.addItem(element.getAttribute("id"));
+            }
+
+        } catch (IOException | ParserConfigurationException | SAXException ex) {
+            Logger.getLogger(VideoControlFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -30,8 +70,14 @@ public class VideoControlFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        modesBG = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         comboStations = new javax.swing.JComboBox<>();
+        rdYard = new javax.swing.JRadioButton();
+        rdMCS = new javax.swing.JRadioButton();
+        rdAUTO = new javax.swing.JRadioButton();
+        rdATB = new javax.swing.JRadioButton();
+        rdStop = new javax.swing.JRadioButton();
         bttnStart = new javax.swing.JButton();
         bttnStop = new javax.swing.JButton();
 
@@ -39,6 +85,57 @@ public class VideoControlFrame extends javax.swing.JFrame {
         setTitle("Station List");
 
         comboStations.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEPOT-STOP", "STOP-N8", "N8-N7", "N7-N5", "N5-N4", "N4-N3", "N3-N2", "N2-N1", "N1-SIAM", "SIAM-S1", "S1-S2", "S2-S3", " " }));
+
+        modesBG.add(rdYard);
+        rdYard.setText("YARD");
+
+        modesBG.add(rdMCS);
+        rdMCS.setText("MCS");
+
+        modesBG.add(rdAUTO);
+        rdAUTO.setText("AUTO");
+
+        modesBG.add(rdATB);
+        rdATB.setText("ATB");
+
+        modesBG.add(rdStop);
+        rdStop.setSelected(true);
+        rdStop.setText("STOP");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboStations, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rdStop)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdYard)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdMCS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdAUTO)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdATB)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(comboStations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdYard)
+                    .addComponent(rdMCS)
+                    .addComponent(rdAUTO)
+                    .addComponent(rdATB)
+                    .addComponent(rdStop))
+                .addContainerGap())
+        );
 
         bttnStart.setText("START");
         bttnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -54,39 +151,19 @@ public class VideoControlFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboStations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bttnStart)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bttnStop)))
-                .addContainerGap(251, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(comboStations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttnStart)
-                    .addComponent(bttnStop))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bttnStart)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bttnStop)
+                        .addGap(0, 202, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,6 +171,10 @@ public class VideoControlFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttnStart)
+                    .addComponent(bttnStop))
                 .addContainerGap())
         );
 
@@ -101,12 +182,32 @@ public class VideoControlFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnStartActionPerformed
+        String oldMode;
 
         //JSONParser jsonParser = new JSONParser();
         JSONObject jsonHead = new JSONObject();
         JSONObject jsonData = new JSONObject();
         jsonData.put("START", (String) comboStations.getSelectedItem());
         jsonHead.put("VIDEO", jsonData);
+        App.OUT_QUEUE.add(jsonHead.toJSONString());
+
+        if (rdYard.isSelected()) {
+            oldMode = "YARD";
+        } else if (rdMCS.isSelected()) {
+            oldMode = "MCS";
+        } else if (rdAUTO.isSelected()) {
+            oldMode = "AUTO";
+        } else if (rdATB.isSelected()) {
+            oldMode = "ATB";
+        } else {
+            oldMode = "STOP";
+        }
+
+        jsonHead = new JSONObject();
+        jsonData = new JSONObject();
+        jsonData.put("STATE", "WAIT");
+        jsonData.put("OLD_MODE", oldMode);
+        jsonHead.put("ATP", jsonData);
         App.OUT_QUEUE.add(jsonHead.toJSONString());
     }//GEN-LAST:event_bttnStartActionPerformed
 
@@ -152,5 +253,11 @@ public class VideoControlFrame extends javax.swing.JFrame {
     private javax.swing.JButton bttnStop;
     private javax.swing.JComboBox<String> comboStations;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.ButtonGroup modesBG;
+    private javax.swing.JRadioButton rdATB;
+    private javax.swing.JRadioButton rdAUTO;
+    private javax.swing.JRadioButton rdMCS;
+    private javax.swing.JRadioButton rdStop;
+    private javax.swing.JRadioButton rdYard;
     // End of variables declaration//GEN-END:variables
 }

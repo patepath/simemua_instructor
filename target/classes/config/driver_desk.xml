@@ -318,12 +318,12 @@ and open the template in the editor.
     </device>
     
     <device id="D223">
-        <type>Switch</type>
+        <type>Switch Yes-No Black</type>
         <name>HEAD-NEUTRAL-TAIL</name>
-        <x></x>
-        <y></y>
-        <width></width>
-        <height></height>
+        <x>739</x>
+        <y>230</y>
+        <width>40</width>
+        <height>40</height>
         <cmdon>D223 S1</cmdon>
         <cmdoff>D223 S0</cmdoff>
         <lampon></lampon>
@@ -409,12 +409,12 @@ and open the template in the editor.
     </device>
     
     <device id="D230">
-        <type>Switch</type>
+        <type>Switch Yes-No Black</type>
         <name>WIND SHIED WIPPER 0-1-2-3</name>
-        <x></x>
-        <y></y>
-        <width></width>
-        <height></height>
+        <x>667</x>
+        <y>494</y>
+        <width>40</width>
+        <height>40</height>
         <cmdon>D230 S1</cmdon>
         <cmdoff>D230 S0</cmdoff>
         <lampon></lampon>
@@ -422,17 +422,16 @@ and open the template in the editor.
     </device>
     
     <device id="D231">
-        <type>Switch</type>
+        <type>Switch Yes-No Black</type>
         <name>CAB VENTILATION 0-3-2-1</name>
-        <x></x>
-        <y></y>
-        <width></width>
-        <height></height>
+        <x>739</x>
+        <y>494</y>
+        <width>40</width>
+        <height>40</height>
         <cmdon>D231 S1</cmdon>
         <cmdoff>D231 S0</cmdoff>
         <lampon></lampon>
         <lampoff></lampoff>
     </device>
-    
-    
+        
 </root>

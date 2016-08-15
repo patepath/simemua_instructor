@@ -28,6 +28,7 @@ import javax.swing.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.json.simple.JSONObject;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -50,9 +51,9 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    private String msg = "";
+//    private final String msg = "";
 
-    private final Map<String, Device> devices;
+    public static final Map<String, Device> DEVS = new HashMap<>();
 
     private boolean mousePressed;
 
@@ -100,7 +101,6 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
         timer = new Timer(100, this);
         timer.start();
 
-        devices = new HashMap<>();
         //initCommunication();
         createDevices();
     }
@@ -173,7 +173,7 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     }
 
     private void drawDevices() {
-        ArrayList<Device> devs = new ArrayList(devices.values());
+        ArrayList<Device> devs = new ArrayList(DEVS.values());
 
         devs.stream().forEach((dev) -> {
             if (dev.getImgCurr() != null) {
@@ -183,7 +183,7 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     }
 
     private void drawSwitchRotary() {
-        ArrayList<Device> sws = new ArrayList(devices.values());
+        ArrayList<Device> sws = new ArrayList(DEVS.values());
 
         sws.stream().forEach((sw) -> {
             if (sw.getImgCurr() != null) {
@@ -199,6 +199,7 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
                         sw.setImgCurr(switchRotaryRedIdleOffImg);
                     }
                     break;
+
                 case "Switch Rotary Yellow":
                     if (sw.getImgCurr() == switchRotaryYellowOnImg && !mousePressed) {
                         sw.setImgCurr(switchRotaryYellowIdleOnImg);
@@ -229,9 +230,9 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 element = (Element) nodeList.item(i);
-                devices.put(element.getAttribute("id"), new Device());
-                devices.get(element.getAttribute("id")).setName(element.getElementsByTagName("name").item(0).getTextContent());
-                devices.get(element.getAttribute("id")).setType(element.getElementsByTagName("type").item(0).getTextContent());
+                DEVS.put(element.getAttribute("id"), new Device());
+                DEVS.get(element.getAttribute("id")).setName(element.getElementsByTagName("name").item(0).getTextContent());
+                DEVS.get(element.getAttribute("id")).setType(element.getElementsByTagName("type").item(0).getTextContent());
 
                 switch (element.getElementsByTagName("type").item(0).getTextContent()) {
                     case "Switch Yes-No Black":
@@ -264,51 +265,51 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setX(Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent()));
+                    DEVS.get(element.getAttribute("id")).setX(Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent()));
                 } catch (DOMException | NumberFormatException e) {
-                    devices.get(element.getAttribute("id")).setX(0);
+                    DEVS.get(element.getAttribute("id")).setX(0);
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setY(Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent()));
+                    DEVS.get(element.getAttribute("id")).setY(Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent()));
                 } catch (DOMException | NumberFormatException e) {
-                    devices.get(element.getAttribute("id")).setY(0);
+                    DEVS.get(element.getAttribute("id")).setY(0);
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setWidth(Integer.parseInt(element.getElementsByTagName("width").item(0).getTextContent()));
+                    DEVS.get(element.getAttribute("id")).setWidth(Integer.parseInt(element.getElementsByTagName("width").item(0).getTextContent()));
                 } catch (DOMException | NumberFormatException e) {
-                    devices.get(element.getAttribute("id")).setWidth(0);
+                    DEVS.get(element.getAttribute("id")).setWidth(0);
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setHeight(Integer.parseInt(element.getElementsByTagName("height").item(0).getTextContent()));
+                    DEVS.get(element.getAttribute("id")).setHeight(Integer.parseInt(element.getElementsByTagName("height").item(0).getTextContent()));
                 } catch (DOMException | NumberFormatException e) {
-                    devices.get(element.getAttribute("id")).setHeight(0);
+                    DEVS.get(element.getAttribute("id")).setHeight(0);
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setCmdOff(element.getElementsByTagName("cmdoff").item(0).getTextContent());
+                    DEVS.get(element.getAttribute("id")).setCmdOff(element.getElementsByTagName("cmdoff").item(0).getTextContent());
                 } catch (Exception e) {
-                    devices.get(element.getAttribute("id")).setCmdOff("");
+                    DEVS.get(element.getAttribute("id")).setCmdOff("");
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setCmdOn(element.getElementsByTagName("cmdon").item(0).getTextContent());
+                    DEVS.get(element.getAttribute("id")).setCmdOn(element.getElementsByTagName("cmdon").item(0).getTextContent());
                 } catch (Exception e) {
-                    devices.get(element.getAttribute("id")).setCmdOn("");
+                    DEVS.get(element.getAttribute("id")).setCmdOn("");
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setLampOn(element.getElementsByTagName("lampon").item(0).getTextContent());
+                    DEVS.get(element.getAttribute("id")).setLampOn(element.getElementsByTagName("lampon").item(0).getTextContent());
                 } catch (Exception e) {
-                    devices.get(element.getAttribute("id")).setLampOn("");
+                    DEVS.get(element.getAttribute("id")).setLampOn("");
                 }
 
                 try {
-                    devices.get(element.getAttribute("id")).setLampOff(element.getElementsByTagName("lampoff").item(0).getTextContent());
+                    DEVS.get(element.getAttribute("id")).setLampOff(element.getElementsByTagName("lampoff").item(0).getTextContent());
                 } catch (Exception e) {
-                    devices.get(element.getAttribute("id")).setLampOff("");
+                    DEVS.get(element.getAttribute("id")).setLampOff("");
                 }
 
             }
@@ -319,9 +320,9 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     }
 
     public void initImageDev(Element element, Image imgOn, Image imgOff, Image imgCurr) {
-        devices.get(element.getAttribute("id")).setImgOn(imgOn);
-        devices.get(element.getAttribute("id")).setImgOff(imgOff);
-        devices.get(element.getAttribute("id")).setImgCurr(imgCurr);
+        DEVS.get(element.getAttribute("id")).setImgOn(imgOn);
+        DEVS.get(element.getAttribute("id")).setImgOff(imgOff);
+        DEVS.get(element.getAttribute("id")).setImgCurr(imgCurr);
     }
 
     /**
@@ -391,107 +392,97 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
         y = evt.getY();
 
         try {
-            Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
+            Iterator<String> device = DEVS.keySet().iterator();            //save data devices to iterator.
             while (device.hasNext()) {                                         //loop next to device
                 String key = (String) (device.next());                         //save key
 
                 //x >= current position x and x <= (current position x + width) become area x
-                if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
-                        && (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
+                if ((x >= DEVS.get(key).getX() && x <= (DEVS.get(key).getX() + DEVS.get(key).getWidth()))
+                        && (y >= DEVS.get(key).getY() && y <= (DEVS.get(key).getY() + DEVS.get(key).getHeight()))) {
 
                     //Check device type event on clicked. If type equal Switch Yes-No Black.
-                    if (devices.get(key).getType().equalsIgnoreCase("Switch Yes-No Black")) {
-                        if (devices.get(key).getImgCurr() != switchYesNoBlackOnImg) {         //Check image is show not equal breaker On.
-                            out.println(devices.get(key).getLampOn());
+                    if (DEVS.get(key).getType().equalsIgnoreCase("Switch Yes-No Black")) {
+                        if (DEVS.get(key).getImgCurr() != switchYesNoBlackOnImg) {         //Check image is show not equal breaker On.
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                            devices.get(key).setImgCurr(switchYesNoBlackOnImg);              //Set image breaker On.
+                            DEVS.get(key).setImgCurr(switchYesNoBlackOnImg);              //Set image breaker On.
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchYesNoBlackOffImg);
+                            DEVS.get(key).setImgCurr(switchYesNoBlackOffImg);
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Yes-No Yellow")) {
-                        if (devices.get(key).getImgCurr() != switchRotaryYellowOnImg) {
-                            out.println(devices.get(key).getLampOn());
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch Yes-No Yellow")) {
+                        if (DEVS.get(key).getImgCurr() != switchRotaryYellowOnImg) {
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                            devices.get(key).setImgCurr(switchRotaryYellowOnImg);
+                            DEVS.get(key).setImgCurr(switchRotaryYellowOnImg);
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchRotaryYellowOffImg);
+                            DEVS.get(key).setImgCurr(switchRotaryYellowOffImg);
 
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Black")) {
-                        if (devices.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
-                            out.println(devices.get(key).getLampOn());
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch PB Square Black")) {
+                        if (DEVS.get(key).getImgCurr() != switchPBSquareBlackOnImg) {
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareBlackOnImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareBlackOnImg);
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareBlackOffImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareBlackOffImg);
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Red")) {
-                        if (devices.get(key).getImgCurr() != switchPBSquareRedOnImg) {
-                            out.println(devices.get(key).getLampOn());
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch PB Square Red")) {
+                        if (DEVS.get(key).getImgCurr() != switchPBSquareRedOnImg) {
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareRedOnImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareRedOnImg);
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareRedOffImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareRedOffImg);
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Green")) {
-                        if (devices.get(key).getImgCurr() != switchPBSquareGreenOnImg) {
-                            out.println(devices.get(key).getLampOn());
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch PB Square Green")) {
+                        if (DEVS.get(key).getImgCurr() != switchPBSquareGreenOnImg) {
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareGreenOnImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareGreenOnImg);
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareGreenOffImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareGreenOffImg);
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Square Yellow")) {
-                        if (devices.get(key).getImgCurr() != switchPBSquareYellowOnImg) {
-                            out.println(devices.get(key).getLampOn());
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch PB Square Yellow")) {
+                        if (DEVS.get(key).getImgCurr() != switchPBSquareYellowOnImg) {
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareYellowOnImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareYellowOnImg);
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBSquareYellowOffImg);
+                            DEVS.get(key).setImgCurr(switchPBSquareYellowOffImg);
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
+
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
                         //Left mouse click. Set lamp off.
                         if (evt.getButton() == 1) {
-                            devices.get(key).setImgCurr(switchRotaryRedOffImg);
-                            out.println(devices.get(key).getLampOff());
+                            DEVS.get(key).setImgCurr(switchRotaryYellowOffImg);
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
                         } else if (evt.getButton() == 3) {
-                            devices.get(key).setImgCurr(switchRotaryRedOnImg);
-                            out.println(devices.get(key).getLampOn());
+                            DEVS.get(key).setImgCurr(switchRotaryYellowOnImg);
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
-                        //Left mouse click. Set lamp off.
-                        if (evt.getButton() == 1) {
-                            devices.get(key).setImgCurr(switchRotaryYellowOffImg);
-                            out.println(devices.get(key).getLampOff());
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch PB Permit")) {
+                        if (DEVS.get(key).getImgCurr() != switchPBPermitOnImg) {
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
-                        } else if (evt.getButton() == 3) {
-                            devices.get(key).setImgCurr(switchRotaryYellowOnImg);
-                            out.println(devices.get(key).getLampOn());
-                            out.flush();
-                        }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch PB Permit")) {
-                        if (devices.get(key).getImgCurr() != switchPBPermitOnImg) {
-                            out.println(devices.get(key).getLampOn());
-                            out.flush();
-                            devices.get(key).setImgCurr(switchPBPermitOnImg);
+                            DEVS.get(key).setImgCurr(switchPBPermitOnImg);
                         } else {
-                            out.println(devices.get(key).getLampOff());
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
-                            devices.get(key).setImgCurr(switchPBPermitOffImg);
+                            DEVS.get(key).setImgCurr(switchPBPermitOffImg);
                         }
                     }
                 }
@@ -505,35 +496,42 @@ public class DriverDeskFrame extends javax.swing.JFrame implements ActionListene
     }//GEN-LAST:event_viewPanelMouseClicked
 
     private void viewPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPanelMousePressed
+        JSONObject json = new JSONObject();
+        JSONObject jsonDev = new JSONObject();
+
         try {
-            Iterator<String> device = devices.keySet().iterator();            //save data devices to iterator.
+            Iterator<String> device = DEVS.keySet().iterator();            //save data devices to iterator.
             while (device.hasNext()) {                                         //loop next to device
                 String key = (String) (device.next());                         //save key
 
                 //x >= current position x and x <= (current position x + width) become area x
-                if ((x >= devices.get(key).getX() && x <= (devices.get(key).getX() + devices.get(key).getWidth()))
-                        && (y >= devices.get(key).getY() && y <= (devices.get(key).getY() + devices.get(key).getHeight()))) {
+                if ((x >= DEVS.get(key).getX() && x <= (DEVS.get(key).getX() + DEVS.get(key).getWidth()))
+                        && (y >= DEVS.get(key).getY() && y <= (DEVS.get(key).getY() + DEVS.get(key).getHeight()))) {
 
                     mousePressed = true;
                     //Check device type event on clicked. If type equal Switch Rotary Red
-                    if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
+                    if (DEVS.get(key).getType().equalsIgnoreCase("Switch Rotary Red")) {
                         if (evt.getButton() == 1) {
-                            devices.get(key).setImgCurr(switchRotaryRedOffImg);
-                            out.println(devices.get(key).getLampOff());
-                            out.flush();
+                            DEVS.get(key).setImgCurr(switchRotaryRedOffImg);
+                            jsonDev.put(key, 0);
+                            json.put("DRIVERDESK", jsonDev);
+                            App.OUT_QUEUE.add(json.toJSONString());
+
                         } else if (evt.getButton() == 3) {
-                            devices.get(key).setImgCurr(switchRotaryRedOnImg);
-                            out.println(devices.get(key).getLampOn());
-                            out.flush();
+                            DEVS.get(key).setImgCurr(switchRotaryRedOnImg);
+                            jsonDev.put(key, 1);
+                            json.put("DRIVERDESK", jsonDev);
+                            App.OUT_QUEUE.add(json.toJSONString());
                         }
-                    } else if (devices.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
+
+                    } else if (DEVS.get(key).getType().equalsIgnoreCase("Switch Rotary Yellow")) {
                         if (evt.getButton() == 1) {
-                            devices.get(key).setImgCurr(switchRotaryYellowOffImg);
-                            out.println(devices.get(key).getLampOff());
+                            DEVS.get(key).setImgCurr(switchRotaryYellowOffImg);
+                            out.println(DEVS.get(key).getLampOff());
                             out.flush();
                         } else if (evt.getButton() == 3) {
-                            devices.get(key).setImgCurr(switchRotaryYellowOnImg);
-                            out.println(devices.get(key).getLampOn());
+                            DEVS.get(key).setImgCurr(switchRotaryYellowOnImg);
+                            out.println(DEVS.get(key).getLampOn());
                             out.flush();
                         }
                     }
