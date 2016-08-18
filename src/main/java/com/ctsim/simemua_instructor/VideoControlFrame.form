@@ -36,7 +36,7 @@
                       <Component id="bttnStart" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="bttnStop" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="202" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -69,6 +69,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="comboStations" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="rdStop" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rdYard" min="-2" max="-2" attributes="0"/>
@@ -96,6 +98,7 @@
                       <Component id="rdAUTO" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rdATB" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rdStop" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -165,7 +168,12 @@
               <ComponentRef name="modesBG"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="STOP"/>
+            <Property name="text" type="java.lang.String" value="SWITCH OFF"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="START FROM"/>
           </Properties>
         </Component>
       </SubComponents>

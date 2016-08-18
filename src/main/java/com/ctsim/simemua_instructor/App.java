@@ -26,7 +26,7 @@ import org.json.simple.parser.ParseException;
  */
 public class App {
 
-    public static final BlockingQueue OUT_QUEUE = new LinkedBlockingQueue<>();
+    public static final BlockingQueue OUT_QUEUE = new LinkedBlockingQueue();
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -59,6 +59,12 @@ public class App {
                 }
             }
 
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }
 
@@ -86,9 +92,9 @@ public class App {
                     jsonDev = (JSONObject) json.get(key);
                     keys = jsonDev.keySet().iterator();
 
+                    //System.out.println(jsonDev.toJSONString());
                     while (keys.hasNext()) {
                         key = keys.next();
-
                         dev = ACarControlPanelFrame.DEVS.get(key);
 
                         try {
@@ -147,12 +153,11 @@ public class App {
     }
 
     private void sendMessage() {
-        while (!OUT_QUEUE.isEmpty()) {
-            out.println(OUT_QUEUE.poll());
+        String msg;
 
-            if (out.checkError()) {
-                socket = null;
-            }
+        if (!OUT_QUEUE.isEmpty()) {
+            out.println(OUT_QUEUE.poll());
+            out.flush();
         }
     }
 

@@ -78,6 +78,7 @@ public class VideoControlFrame extends javax.swing.JFrame {
         rdAUTO = new javax.swing.JRadioButton();
         rdATB = new javax.swing.JRadioButton();
         rdStop = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         bttnStart = new javax.swing.JButton();
         bttnStop = new javax.swing.JButton();
 
@@ -100,7 +101,9 @@ public class VideoControlFrame extends javax.swing.JFrame {
 
         modesBG.add(rdStop);
         rdStop.setSelected(true);
-        rdStop.setText("STOP");
+        rdStop.setText("SWITCH OFF");
+
+        jLabel1.setText("START FROM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,6 +114,8 @@ public class VideoControlFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboStations, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdStop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdYard)
@@ -133,7 +138,8 @@ public class VideoControlFrame extends javax.swing.JFrame {
                     .addComponent(rdMCS)
                     .addComponent(rdAUTO)
                     .addComponent(rdATB)
-                    .addComponent(rdStop))
+                    .addComponent(rdStop)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -163,7 +169,7 @@ public class VideoControlFrame extends javax.swing.JFrame {
                         .addComponent(bttnStart)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bttnStop)
-                        .addGap(0, 202, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -182,7 +188,7 @@ public class VideoControlFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnStartActionPerformed
-        String oldMode;
+        String startFrom;
 
         //JSONParser jsonParser = new JSONParser();
         JSONObject jsonHead = new JSONObject();
@@ -192,21 +198,21 @@ public class VideoControlFrame extends javax.swing.JFrame {
         App.OUT_QUEUE.add(jsonHead.toJSONString());
 
         if (rdYard.isSelected()) {
-            oldMode = "YARD";
+            startFrom = "YARD";
         } else if (rdMCS.isSelected()) {
-            oldMode = "MCS";
+            startFrom = "MCS";
         } else if (rdAUTO.isSelected()) {
-            oldMode = "AUTO";
+            startFrom = "AUTO";
         } else if (rdATB.isSelected()) {
-            oldMode = "ATB";
+            startFrom = "ATB";
         } else {
-            oldMode = "STOP";
+            startFrom = "STOP";
         }
 
         jsonHead = new JSONObject();
         jsonData = new JSONObject();
         jsonData.put("STATE", "WAIT");
-        jsonData.put("OLD_MODE", oldMode);
+        jsonData.put("OLD_MODE", startFrom);
         jsonHead.put("ATP", jsonData);
         App.OUT_QUEUE.add(jsonHead.toJSONString());
     }//GEN-LAST:event_bttnStartActionPerformed
@@ -252,6 +258,7 @@ public class VideoControlFrame extends javax.swing.JFrame {
     private javax.swing.JButton bttnStart;
     private javax.swing.JButton bttnStop;
     private javax.swing.JComboBox<String> comboStations;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.ButtonGroup modesBG;
     private javax.swing.JRadioButton rdATB;

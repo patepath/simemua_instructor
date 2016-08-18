@@ -5,6 +5,8 @@
  */
 package com.ctsim.simemua_instructor;
 
+import org.json.simple.JSONObject;
+
 /**
  *
  * @author patipat
@@ -47,14 +49,14 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
         jRadioButton11 = new javax.swing.JRadioButton();
         jRadioButton14 = new javax.swing.JRadioButton();
         jRadioButton15 = new javax.swing.JRadioButton();
-        jRadioButton16 = new javax.swing.JRadioButton();
+        rbBCUFault = new javax.swing.JRadioButton();
         jRadioButton17 = new javax.swing.JRadioButton();
         jRadioButton18 = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jRadioButton19 = new javax.swing.JRadioButton();
         jRadioButton20 = new javax.swing.JRadioButton();
         jRadioButton21 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        bttnActivate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fault Generate");
@@ -151,8 +153,8 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
         faultBGRadio.add(jRadioButton15);
         jRadioButton15.setText("400 Power Supply");
 
-        faultBGRadio.add(jRadioButton16);
-        jRadioButton16.setText("BCU Fault");
+        faultBGRadio.add(rbBCUFault);
+        rbBCUFault.setText("BCU Fault");
 
         faultBGRadio.add(jRadioButton17);
         jRadioButton17.setText("Friction Brake On");
@@ -215,7 +217,7 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jRadioButton15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButton16)))
+                                        .addComponent(rbBCUFault)))
                                 .addGap(25, 25, 25)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jRadioButton9)
@@ -242,7 +244,7 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton15)
-                    .addComponent(jRadioButton16))
+                    .addComponent(rbBCUFault))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -250,7 +252,12 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Activate");
+        bttnActivate.setText("Activate");
+        bttnActivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnActivateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,7 +269,7 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton1))
+                    .addComponent(bttnActivate))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -273,12 +280,23 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(bttnActivate)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttnActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnActivateActionPerformed
+        JSONObject json = new JSONObject();
+        JSONObject jsonDev = new JSONObject();
+        
+        if(rbBCUFault.isSelected()) {     
+            jsonDev.put("BCU", 1);
+            json.put("FAULT", jsonDev);
+            App.OUT_QUEUE.add(json.toJSONString());
+        }
+    }//GEN-LAST:event_bttnActivateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,9 +332,9 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttnActivate;
     private javax.swing.ButtonGroup emuaBGRadio;
     private javax.swing.ButtonGroup faultBGRadio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -327,7 +345,6 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton13;
     private javax.swing.JRadioButton jRadioButton14;
     private javax.swing.JRadioButton jRadioButton15;
-    private javax.swing.JRadioButton jRadioButton16;
     private javax.swing.JRadioButton jRadioButton17;
     private javax.swing.JRadioButton jRadioButton18;
     private javax.swing.JRadioButton jRadioButton19;
@@ -341,5 +358,6 @@ public class FaultGenerateFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JRadioButton rbBCUFault;
     // End of variables declaration//GEN-END:variables
 }

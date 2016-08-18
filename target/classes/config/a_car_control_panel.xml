@@ -499,6 +499,24 @@
         <height></height>
     </device>
     
+    <device id="A216">
+        <type>Spare</type>
+        <name>Spare</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
+    <device id="A217">
+        <type>Spare</type>
+        <name>Spare</name>
+        <x></x>
+        <y></y>
+        <width></width>
+        <height></height>
+    </device>
+    
     <device id="A401">
         <type>Buzzer</type>
         <name>OVER SPEED</name>
