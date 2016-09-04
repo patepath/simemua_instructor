@@ -79,6 +79,8 @@ public class VideoControlFrame extends javax.swing.JFrame {
         rdATB = new javax.swing.JRadioButton();
         rdStop = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        rdWM = new javax.swing.JRadioButton();
+        rdRM2 = new javax.swing.JRadioButton();
         bttnStart = new javax.swing.JButton();
         bttnStop = new javax.swing.JButton();
 
@@ -105,6 +107,12 @@ public class VideoControlFrame extends javax.swing.JFrame {
 
         jLabel1.setText("START FROM");
 
+        modesBG.add(rdWM);
+        rdWM.setText("WM");
+
+        modesBG.add(rdRM2);
+        rdRM2.setText("RM2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,8 +132,12 @@ public class VideoControlFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdAUTO)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdATB)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(rdATB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdWM)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdRM2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +151,9 @@ public class VideoControlFrame extends javax.swing.JFrame {
                     .addComponent(rdAUTO)
                     .addComponent(rdATB)
                     .addComponent(rdStop)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(rdWM)
+                    .addComponent(rdRM2))
                 .addContainerGap())
         );
 
@@ -205,6 +219,10 @@ public class VideoControlFrame extends javax.swing.JFrame {
             startFrom = "AUTO";
         } else if (rdATB.isSelected()) {
             startFrom = "ATB";
+        } else if (rdWM.isSelected()) {
+            startFrom = "WM";
+        } else if (rdRM2.isSelected()) {
+            startFrom = "RM2";
         } else {
             startFrom = "STOP";
         }
@@ -264,7 +282,9 @@ public class VideoControlFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdATB;
     private javax.swing.JRadioButton rdAUTO;
     private javax.swing.JRadioButton rdMCS;
+    private javax.swing.JRadioButton rdRM2;
     private javax.swing.JRadioButton rdStop;
+    private javax.swing.JRadioButton rdWM;
     private javax.swing.JRadioButton rdYard;
     // End of variables declaration//GEN-END:variables
 }

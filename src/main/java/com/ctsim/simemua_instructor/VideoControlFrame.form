@@ -80,9 +80,13 @@
                           <Component id="rdAUTO" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rdATB" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="rdWM" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="rdRM2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -99,6 +103,8 @@
                       <Component id="rdATB" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rdStop" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rdWM" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rdRM2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -174,6 +180,22 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="START FROM"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rdWM">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="modesBG"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="WM"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rdRM2">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="modesBG"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="RM2"/>
           </Properties>
         </Component>
       </SubComponents>
